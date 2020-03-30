@@ -8,7 +8,7 @@ Five College FOMO
 
 - Emma Wolff @wolff23e
 - Sathvik Birudavolu @BSathvik
-- Ralluri @ralluri-sudo
+- Rahul Alluri @ralluri-sudo
 
 ### Innovative Idea
 
