@@ -1,0 +1,68 @@
+html {
+    height: 100%;
+}
+
+body {
+    padding-top: 40px;
+    height: 100%;
+}
+
+
+.filter-column {
+    width: 25em;
+    background-color: rgb(197, 197, 197);
+}
+
+.filter-container {
+    background-color: rgb(197, 197, 197);
+    width: 80%;
+}
+
+
+.container-fluid {
+    background-color: gray;
+    height: 100%;
+    padding: 0;
+}
+
+
+.filter-title {
+    display: flex;
+    margin: 1em 0em 0.5em 0em;
+    width: 100%;
+    font-weight: 600;
+    justify-content: center;
+}
+
+.events-column {
+    background-color: brown;
+    width: 100%;
+}
+
+.events-container {
+    background-color: tomato;
+    width: 35em;
+    height: 100vh;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10em;
+    background-color: white;
+    padding: 1em;
+}
+
+.event-img {
+    height: 20em;
+    object-fit: cover;
+}
+
+.event-title {
+    font-size: large;
+    font-weight: 600;
+    margin-top: 1em;
+    width: 100%;
+    text-align: center;
+}
