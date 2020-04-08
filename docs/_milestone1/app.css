@@ -53,6 +53,23 @@ body {
     background-color: white;
     padding: 1em;
 }
+.form-column {
+    background-color: brown;
+    width: 100%;
+}
+.form-container {
+    background-color: tomato;
+    width: 50em;
+    height: 100vh;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 3em;
+    background-color: tomato;
+    padding: 1em;
+}
 
 .event-img {
     height: 20em;

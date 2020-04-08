@@ -1,5 +1,7 @@
-<html lang="en">
+!doctype html>
 
+<html lang="en">
+<script src="proj.js"></script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,56 +77,52 @@
 
     <div class="container-fluid d-flex flex-row">
 
-        <div class="filter-column d-flex flex-column justify-content-center align-items-center">
-
-            <div class="filter-container d-flex flex-column justify-content-center">
-
-                <div class="filter-title">Find an event</div>
-                <form class="form-inline my-2 my-lg-0 justify-content-center">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <div class="material-icons btn .bg-gray border border-primary ml-2">search</div>
-                </form>
-
-                <div class="filter-title">Popular Activities</div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Outings</a>
-                    <a href="#" class="list-group-item list-group-item-action">Ski & Board</a>
-                    <a href="#" class="list-group-item list-group-item-action">Robotics</a>
-                    <a href="#" class="list-group-item list-group-item-action">Movies</a>
-                    <a href="#" class="list-group-item list-group-item-action">Books</a>
-                    <a href="#" class="list-group-item list-group-item-action">Martial Arts</a>
-                    <a href="#" class="list-group-item list-group-item-action">Surfing</a>
-                    <a href="#" class="list-group-item list-group-item-action">Cooking</a>
-                </div>
-
-            </div>
+        
     
-        </div>
-    
-        <div class="form-column d-flex flex-column justify-content-center align-items-center">
+        <div class="events-column d-flex flex-column justify-content-center align-items-center">
 
-            <div class="events-container">
-
-                <div class="event">
-                    <img class="event-img" src="https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155">
-                    <div class="event-title">
-                        Come hike with us at the UMass Outing Club!
+            <div class="form-container">
+              <h1 class="filter-title">Add your own event!</h1>
+                <div class="form">
+                  
+                  <form>
+                    <div class="form-group">
+                      <label for="event">Email address</label>
+                      <input type="event" class="form-control" id="event" placeholder="What is your event called?">
                     </div>
-
-                    <div class="event-desc mt-2">
-                        Please come signup at the campus center this Wednesday at 4pm.
+ 
+                    <div class="form-group">
+                      <label for="description">Describe your event:</label>
+                      <textarea class="form-control" rows="5" id="description"></textarea>
                     </div>
-
-                    <div class="border-top border-dark mt-4"></div>
-                    <div class="d-flex flex-row mt-1 justify-content-between">
-                        <div class="event-time">
-                            <b>Time:</b> April 5th at 3pm
-                        </div>
-                        <div class="event-place">
-                            <b>Location:</b> Mt. Sugarloaf
-                        </div>
+                    <div class="md-form">
+                      <label for="date-picker-example">Select your date</label>
+                      <input placeholder="Selected date" type="text" id="date-picker-example" class="form-control datepicker">
+                      
                     </div>
-
+                    <div class="form-group">
+                      <label for="date-picker-example">Choose your tags:</label>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Ski & Board</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Robotics</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Movies</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Books</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Martial Arts</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="">Surfing</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
                 </div>
 
             </div>
