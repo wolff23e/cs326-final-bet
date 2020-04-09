@@ -15,11 +15,14 @@
 
 
 ### HTML/CSS/Bootstrap mockups
-![Image of  Add Event Page](docs/addevent.png)
-![Image of  Clubs and Orgs Page](docs/clubsandorgs.png)
-![Image of  Event Feed Main Page](docs/eventfeed.png)
-![Image of  Login Page](docs/login.png)
 
+<img src="/docs/addevent.png" width="400">
+
+<img src="/docs/clubsandorgs.png"width="400">
+
+<img src="/docs/eventfeed.png" width="400">
+
+<img src="/docs/login.png" width="400">
 
 ### Breakdown of the Division of Labor
 - Group: Held Zoom meeting to discuss which pages we anticipated this site will need, discussed logistics of site planning and creation, discussed general roles and responsibilites yet agreeed to touch base as needed, and agreed to wireframe drawn in call. All planned and participated.  
