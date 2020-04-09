@@ -15,13 +15,16 @@
 
 
 ### HTML/CSS/Bootstrap mockups
-
+![Image of  Add Event Page](docs/addevent.png)
+![Image of  Clubs and Orgs Page](docs/clubsandorgs.png)
+![Image of  Event Feed Main Page](docs/eventfeed.png)
+![Image of  Login Page](docs/login.png)
 
 
 ### Breakdown of the Division of Labor
 - Group: Held Zoom meeting to discuss which pages we anticipated this site will need, discussed logistics of site planning and creation, discussed general roles and responsibilites yet agreeed to touch base as needed, and agreed to wireframe drawn in call. All planned and participated.  
 
-- Emma Wolff @wolff23e  Tasks: Drew wireframe, polished CSS/ final design. 
+- Emma Wolff @wolff23e  Tasks: Drew wireframe, polished CSS/ final design, markdown. 
 
 - Sathvik Birudavolu @BSathvik Tasks: Made events main feed page.
 
