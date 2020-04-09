@@ -11,7 +11,7 @@
 
 ### Wireframes
 
-![Image of  Wireframe](docs/wireframe.jpg)
+![Image of  Wireframe](https://user-images.githubusercontent.com/53016009/78851687-6f020b80-79e8-11ea-854d-a96938f17588.jpg)
 
 
 ### HTML/CSS/Bootstrap mockups
