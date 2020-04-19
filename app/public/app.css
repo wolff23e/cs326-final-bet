@@ -10,17 +10,17 @@ body {
 
 .filter-column {
     width: 25em;
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(211, 164, 238);
 }
 
 .filter-container {
-    background-color: rgb(197, 197, 197);
+    background-color: rgb(211, 164, 238);
     width: 80%;
 }
 
 
 .container-fluid {
-    background-color: gray;
+    background-color: rgb(214, 214, 214);
     height: 100%;
     padding: 0;
 }
@@ -35,12 +35,12 @@ body {
 }
 
 .events-column {
-    background-color: brown;
+    background-color: purple;
     width: 100%;
 }
 
 .events-container {
-    background-color: tomato;
+    background-color: purple;
     width: 35em;
     height: 100vh;
 }
@@ -54,11 +54,11 @@ body {
     padding: 1em;
 }
 .form-column {
-    background-color: brown;
+    background-color:purple;
     width: 100%;
 }
 .form-container {
-    background-color: tomato;
+    background-color: purple;
     width: 50em;
     height: 100vh;
 }
@@ -67,7 +67,7 @@ body {
     flex-direction: column;
     width: 100%;
     margin-top: 3em;
-    background-color: tomato;
+    background-color: purple;
     padding: 1em;
 }
 
