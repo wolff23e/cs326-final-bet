@@ -8,8 +8,7 @@ export function eventAdd(){
       let description = document.getElementById("description").value;
       let dateExample = document.getElementById("dateExample").value;
       let image = document.getElementById("image").value;
- 
-    //image
+
     //jwt  -> tokens cache is browser that user is logged in when making request
       // create this data object
       const data = 
