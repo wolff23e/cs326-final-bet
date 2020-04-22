@@ -23,13 +23,8 @@ export function eventAdd(){
         "eventStartTime": dateExample, // Needs to be in-terms of unix time.
         "image": image, 
         "author": "Rahul Alluri",
-        "Tag one": tag1,
-        "Tag two":tag2,
-        "Tag three":tag3,
-        "Tag four":tag4,
-        "Tag five":tag5,
+        "Tags": [tag1, tag2, tag3, tag4, tag5],
         "jwt": "<jwt token>"    
-
     };
     
     const response = await postData(getUrl('event/create'), data);
