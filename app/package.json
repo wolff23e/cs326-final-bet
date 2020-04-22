@@ -2,7 +2,7 @@
   "name": "five-college-fomo",
   "version": "1.0.0",
   "description": "Backend API for Five College FOMO",
-  "main": "build/server.js",
+  "main": "build/api/server.js",
   "repository": "https://github.com/wolff23e/cs326-final-bet",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
