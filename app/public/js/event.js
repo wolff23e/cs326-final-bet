@@ -7,16 +7,19 @@ export function eventAdd(){
       let event = document.getElementById("event").value;
       let description = document.getElementById("description").value;
       let dateExample = document.getElementById("dateExample").value;
-  
+      let image = document.getElementById("image").value;
+ 
+    //image
+    //jwt  -> tokens cache is browser that user is logged in when making request
       // create this data object
       const data = 
       {
         "title": event,
         "description": description,
         "eventStartTime": dateExample, // Needs to be in-terms of unix time.
-        "image": "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
+        "image": image, 
         "author": "Rahul Alluri",
-        "jwt": "<jwt token>"
+        "jwt": "<jwt token>"    
     };
     
     const response = await postData(getUrl('event/create'), data);
