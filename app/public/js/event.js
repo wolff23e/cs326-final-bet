@@ -20,15 +20,18 @@ function eventAdd(){
       let event = document.getElementById("event").value;
       let description = document.getElementById("description").value;
       let dateExample = document.getElementById("dateExample").value;
-      
-      //
+      // pass data to url   //postman event/create
       const data={"event": event,'description':description, 'dateExample':dateExample}
-      const j = await resp.json();
-      //need to change 
-      if (j['result'] !== 'error') {
-          document.getElementById("output").innerHTML = "101: <b>" + userName + ", " + counterName + " created.</b>";
+    
+      const jsuccess = await resp.json(); 
+
+   
+      if (jsuccess == true) {
+          document.getElementById("output").innerHTML = "Event Successfully posted";
+
       } else {
-          document.getElementById("output").innerHTML = "100: " + userName + ", " + counterName + " not found.</b>";
+        json.console.error();
+        j.error;
       }
       })();
 }
