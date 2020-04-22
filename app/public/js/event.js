@@ -28,7 +28,7 @@ export function eventAdd(){
     if (jsonResponse["success"] === true) {
         document.getElementById("output").innerHTML = "Event Successfully posted";
     } else {
-        const error = jsonResponse["success"]; // this is the error string;
+        const error = jsonResponse["error"]; // this is the error string;
         document.getElementById("output").innerHTML = error;
     }
   
