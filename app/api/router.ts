@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import User from './user';
 import Event from './event';
 
@@ -19,6 +19,9 @@ export default class Router {
       // Serve static pages 
       this.server.use('/', express.static('./public'));
 
+      // Parse requests as JSON
+      this.server.use(express.json());
+
       // Endpoint for API
       this.server.use('/api', this.router);
 
@@ -26,9 +29,10 @@ export default class Router {
       this.router.post('/user/register', this.registerHandler.bind(this));
       this.router.post('/user/login', this.loginHandler.bind(this));
 
-      this.router.post('/event/create', this.createEventHandler.bind(this));
-      this.router.post('/event/update', this.updateEventHandler.bind(this));
-      this.router.get('/event/popular', this.popularEventsHandler.bind(this));
+      this.router.post('/event/popular', this.popularEventsHandler.bind(this));
+
+      this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
+      this.router.post('/event/update', [this.authHandler.bind(this), this.updateEventHandler.bind(this)]);
   
       this.router.all('*', this.errorHandler.bind(this));
     }
@@ -38,6 +42,10 @@ export default class Router {
       response.end();
     }
     
+    private async authHandler(request: Request, response: Response, next: NextFunction) : Promise<void> {
+      await User.authenticate(request.body.jwt, response, next);
+    }
+
     private async registerHandler(request: Request, response: Response) : Promise<void> {
       await User.register(request.body, response);
     }

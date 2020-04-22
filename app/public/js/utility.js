@@ -1,3 +1,7 @@
+export function getUrl(endpoint) {
+    return 'http://localhost:8080/api/' + endpoint;
+}
+
 export async function postData(url, data) {
     const resp = await fetch(url,
                              {

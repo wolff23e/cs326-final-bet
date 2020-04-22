@@ -1,6 +1,6 @@
-import { postData } from './utility';
+import { postData } from './utility.js';
 
-function login(){
+export function login(){
     (async () => {
         let pass = document.getElementById("username").value;
         let userName = document.getElementById("password").value;

@@ -14,7 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    
+    <script type="module" src="js/main.js"></script>
 </head>
 
 <script> 
@@ -28,9 +29,6 @@ $(document).ready(function() {
   <div id="navbarFill"></div>
 
     <div class="container-fluid d-flex flex-row">
-
-        
-    
         <div class="events-column d-flex flex-column justify-content-center align-items-center">
             <div class="form-container">
 
@@ -38,7 +36,7 @@ $(document).ready(function() {
               <h1 class="filter-title">Add your own event!</h1>
                 <div class="form">
                   
-                  <form>
+                  <form onsubmit="return false;">
                     <div class="form-group">
                       <label for="event">Email address</label>
                       <input type="event" class="form-control" id="event" placeholder="What is your event called?">
@@ -74,7 +72,7 @@ $(document).ready(function() {
                         <label><input type="checkbox" value="">Surfing</label>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-dark">Submit</button>
+                    <button id="event-submit" class="btn btn-primary btn-dark">Submit</button>
                   </form>
                 </div>
 
