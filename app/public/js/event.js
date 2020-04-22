@@ -43,4 +43,19 @@ export function eventAdd(){
     })();
 }
 
+export function updateEvent(){
+  (async () => {
+    //where we will display the corresponding events for user
+
+    if (//json author matches user currently using) {
+      document.getElementById("yourevent").innerHTML = //json list of events for author;
+  } else {
+      const notFound = jsonResponse["No events found for this user."]; // this is the error string;
+      document.getElementById("yourevent").innerHTML = notFound;
+  }
+
+})();
+}
+
 $("#event-submit").on("click", eventAdd);
+$("#load-events").on("click", updateEvent);
