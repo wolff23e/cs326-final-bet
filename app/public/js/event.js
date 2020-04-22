@@ -1,20 +1,7 @@
 //event create
 //hook fucntion to submit create event button at end of page
-async function postData(url, data) {
-  const resp = await fetch(url,
-                           {
-                               method: 'POST',
-                               mode: 'cors',
-                               cache: 'no-cache',
-                               credentials: 'same-origin',
-                               headers: {
-                                   'Content-Type': 'application/json'
-                               },
-                               redirect: 'follow',
-                               body: JSON.stringify(data)
-                           });
-  return resp;
-}
+import { postData } from './utility';
+
 function eventAdd(){
   (async () => {
       let event = document.getElementById("event").value;
