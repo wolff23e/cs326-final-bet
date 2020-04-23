@@ -7,9 +7,11 @@ function login(){
         const data={'username': userName,'password':pass}
         const newURL = url + "/user" + userName + "/login";
         const resp = await postData(newURL, data);
+        console.log(resp);
         if(resp.success!=true){
             document.getElementById("userorpassinc").style.visibility = "visible";
         }
 
         })();
 }
+$("#loginsubmit").on("click", login);
