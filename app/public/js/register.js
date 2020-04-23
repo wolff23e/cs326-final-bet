@@ -5,10 +5,11 @@ function login(){
         let pass = document.getElementById("username").value;
         let userName = document.getElementById("password").value;
         const data={'username': userName,'password':pass}
-        const newURL = url + "/user" + userName + "/login";
-        const resp = await postData(newURL, data);
-        console.log(resp);
-        if(resp.success!=true){
+        
+        const resp = await postData("user/login", data);
+        const jsonResponse=await resp.json
+        console.log(JSON.stringify(jsonResponse));
+        if(jsonResponse["success"] !== true) {
             document.getElementById("userorpassinc").style.visibility = "visible";
         }
 
