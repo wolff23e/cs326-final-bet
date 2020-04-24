@@ -1,2 +1,2 @@
 import './event.js';
-import './register.js';
+import './user.js';
