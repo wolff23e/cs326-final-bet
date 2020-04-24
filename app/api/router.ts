@@ -30,6 +30,7 @@ export default class Router {
       this.router.post('/user/login', this.loginHandler.bind(this));
 
       this.router.post('/event/popular', this.popularEventsHandler.bind(this));
+      this.router.post('/event/tags', this.getTagsHandler.bind(this));
 
       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
       this.router.post('/event/update', [this.authHandler.bind(this), this.updateEventHandler.bind(this)]);
@@ -64,6 +65,10 @@ export default class Router {
 
     private async popularEventsHandler(request: Request, response: Response) : Promise<void> {
       await Event.getPopularEvents(request.body, response);
+    }
+
+    private async getTagsHandler(request: Request, response: Response) : Promise<void> {
+      await Event.getTags(request.body, response);
     }
 
     public listen(port: number, callback: () => void) : void  {

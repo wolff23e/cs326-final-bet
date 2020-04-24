@@ -53,4 +53,27 @@ export default class Event {
         response.write(JSON.stringify( { success: true, data: [fakeDataOne, fakeDataTwo] } ))
         response.end();
     }
+
+    public static async getTags(data: any, response: Response): Promise<void> {
+
+        const fakeTags = [
+            "UMass", 
+            "Holyoke",
+            "Ski and Board Club",
+            "Food",
+            "Movies",
+            "Bars",
+            "Hiking",
+            "Robotics",
+            "Math",
+            "Machine Learning",
+            "Bitcoin"
+        ];
+
+        const count = data.count ? parseInt(data.count) : fakeTags.length;
+
+        response.write(JSON.stringify( { success: true, "tags": fakeTags.slice(0, count) } ))
+        response.end();
+    }
+
 }
