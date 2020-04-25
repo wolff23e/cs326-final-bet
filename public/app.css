@@ -91,3 +91,9 @@ body {
     width: 100%;
     background-color: white;
 }
+
+.ae-tag-input {
+    display: flex;
+    width: 10em;
+    margin: 1em 1em 1em 0;
+}

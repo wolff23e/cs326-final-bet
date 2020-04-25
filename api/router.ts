@@ -71,7 +71,7 @@ export default class Router {
       await Event.getTags(request.body, response);
     }
 
-    public listen(port: number, callback: () => void) : void  {
+    public listen(port: number | string, callback: () => void) : void  {
 	    this.server.listen(port, callback);
     }
 

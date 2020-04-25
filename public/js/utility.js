@@ -1,5 +1,5 @@
 export function getUrl(endpoint) {
-    return 'http://localhost:8080/api/' + endpoint;
+    return 'https://murmuring-woodland-32500.herokuapp.com/api/' + endpoint;
 }
 
 export async function postData(url, data) {
