@@ -22,6 +22,8 @@
 <script> 
   $(document).ready(function() {
     $('#navbarFill').load("navbar.html");
+    // get all tags
+    getTags(10);
   });
 </script>
 
@@ -33,15 +35,9 @@
 
     <div class="events-container">
       <h1 class="filter-title">Need help searching?</h1>
-      <h2 class="filter-title">Here are all our groups and tags</h2>
-      <div class="event">
-          <p>
-              
-          </p>
-          
+      <h2 class="filter-title mb-10">Here are all our groups and tags</h2>
 
-      </div>
-        
+      <ul id="tag-list" class="list-group mt-5"></ul>
 
     </div>
   </div>

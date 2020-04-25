@@ -59,3 +59,38 @@ export function updateEvent(){
 
 $("#event-submit").on("click", eventAdd);
 $("#load-events").on("click", updateEvent);
+
+function createTagListItem(tagName) {
+  return `
+  <li class="list-group-item tag-row ">
+    <a href="#">
+      ${tagName}  
+    </a>
+  </li>
+  `;
+}
+
+
+function getTags(tagsLimit){
+  (async () => {
+
+      const data = { count: tagsLimit };
+      
+      const resp = await postData(getUrl('event/tags'), data);
+      const jsonResponse = await resp.json();
+
+      console.log(JSON.stringify(jsonResponse));
+
+      if (jsonResponse["success"] !== true) {
+        // TODO: show error somehow.
+        return;
+      } else {
+        jsonResponse["tags"].forEach(tag => {
+          $(createTagListItem(tag)).appendTo("#tag-list");
+        });
+      }
+
+  })();
+};
+
+window.getTags = getTags;

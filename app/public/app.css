@@ -83,3 +83,11 @@ body {
     width: 100%;
     text-align: center;
 }
+
+.tag-row {
+    display: flex;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    width: 100%;
+    background-color: white;
+}

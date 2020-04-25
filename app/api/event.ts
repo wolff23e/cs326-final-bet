@@ -70,7 +70,7 @@ export default class Event {
             "Bitcoin"
         ];
 
-        const count = data.count ? parseInt(data.count) : fakeTags.length;
+        const count = data.count ? Math.min(parseInt(data.count), fakeTags.length) : fakeTags.length;
 
         response.write(JSON.stringify( { success: true, "tags": fakeTags.slice(0, count) } ))
         response.end();
