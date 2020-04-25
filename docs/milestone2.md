@@ -5,16 +5,16 @@
 <a href="https://documenter.getpostman.com/view/3593173/Szf52oX6?version=latest"> Api Documentation Link</a>
 
 ### Verification of Email during log in
-<img src="/docs/loginverificationemail.png" width="400">
+<img src="/docs/images/loginverificationemail.png" width="400">
 
 ### Verification of Email during Register
-<img src="/docs/registeremailverification.png"width="400">
+<img src="/docs/images/registeremailverification.png"width="400">
 
 ### Pulling tags used in events to display for users under 'Clubs and Orgs'
-<img src="/docs/tags.png" width="400">
+<img src="/docs/images/tags.png" width="400">
 
 ### Verification of Password during log in
-<img src="/docs/registeremailverification.png" width="400">
+<img src="/docs/images/registeremailverification.png" width="400">
 
 
 ### The URL of your Heroku Application
