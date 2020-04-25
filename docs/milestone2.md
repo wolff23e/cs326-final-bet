@@ -19,11 +19,12 @@
 ### Verification of Password during log in
 <img src="/docs/images/registeremailverification.png" width="400">
 
-
 ### The URL of your Heroku Application
+
 https://murmuring-woodland-32500.herokuapp.com/
 
-
 ### Breakdown of the Division of Labor
-Rahul: API point client side for login(register.js). Minor CSS and HTML editing, milestone2.md
-Sathvik: Back end skeleton, API point client side for registering,api documentation, HTML organising and formatting.
+
+- Rahul: API point client side for login(public/js/user.js). Minor CSS and HTML editing, milestone2.md
+- Emma: Minor HTML changes to addEvent.
+- Sathvik: Back end skeleton, API point client side for registering, login and tags. Deployment, API documentation, HTML organising and formatting.
