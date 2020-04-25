@@ -33,36 +33,37 @@
             <div class="form-container">
               <h1 class="filter-title">Sign up</h1>
                 <div class="form">
-                  
-                  <form>
                     <div class="form-group">
                       <label for="event">Email address</label>
-                      <input type="event" class="form-control" id="email" placeholder="Email">
+                      <input type="event" class="form-control" id="regis-email" placeholder="Email">
                     </div>
  
                     <div class="form-group">
-                       <label for="username">Username</label>
-                      <input type="event" class="form-control" id="Username" placeholder="Username">
-                    </div>
-                    <div class="form-group">
                        <label for="password">Password</label>
-                      <input type="event" class="form-control" id="password" placeholder="Password">
+                      <input type="password" class="form-control" id="regis-pass" placeholder="Password">
                     </div>
                     <div class="form-group">
                        <label for="conpassword">Confirm Password</label>
-                      <input type="event" class="form-control" id="conpassword" placeholder="Confirm Password">
+                      <input type="password" class="form-control" id="regis-con-pass" placeholder="Confirm Password">
                     </div>
+
                     <div class="form-group">
-                      <label for="email-notif">Would you like email notifications?:</label>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="Yes">Yes</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="No">No</label>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
+                      <label for="username">First name</label>
+                     <input type="event" class="form-control" id="regis-first-n" placeholder="First name">
+                   </div>
+
+                   <div class="form-group">
+                     <label for="username">Last name</label>
+                    <input type="event" class="form-control" id="regis-last-n" placeholder="Last name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="school">School</label>
+                   <input type="event" class="form-control" id="regis-school" placeholder="School">
+                 </div>
+
+                    <button id="regis-submit" class="btn btn-primary mt-5">Submit</button>
+                    <div id="regis-status" class="d-flex justify-content-center text-danger mt-5"></div>
                 </div>
 
             </div>
