@@ -27,4 +27,4 @@ https://murmuring-woodland-32500.herokuapp.com/
 
 - Rahul: API point client side for login(public/js/user.js). Minor CSS and HTML editing, milestone2.md
 - Emma: Minor HTML changes to addEvent.
-- Sathvik: Back end skeleton, API point client side for registering, login and tags. Deployment, API documentation, HTML organising and formatting.
+- Sathvik: Back end skeleton, API point client side for registering, login, tags and create event. Deployment, API documentation, HTML organising and formatting.
