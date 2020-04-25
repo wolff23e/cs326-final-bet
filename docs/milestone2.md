@@ -13,6 +13,9 @@
 ### Pulling tags used in events to display for users under 'Clubs and Orgs'
 <img src="/docs/images/tags.png" width="400">
 
+### Adding new events page
+<img src="/docs/images/addevent.png" width="400">
+
 ### Verification of Password during log in
 <img src="/docs/images/registeremailverification.png" width="400">
 
@@ -23,5 +26,4 @@ https://murmuring-woodland-32500.herokuapp.com/
 
 ### Breakdown of the Division of Labor
 Rahul: API point client side for login(register.js). Minor CSS and HTML editing, milestone2.md
-Emma: API point client side for Tags
 Sathvik: Back end skeleton, API point client side for registering,api documentation, HTML organising and formatting.
