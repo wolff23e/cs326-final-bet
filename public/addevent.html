@@ -37,44 +37,44 @@ $(document).ready(function() {
                 <div class="form">
                   
                   <form onsubmit="return false;">
+
                     <div class="form-group">
-                      <label for="event">Email address</label>
-                      <input type="event" class="form-control" id="event" placeholder="What is your event called?">
+                      <label for="description">Enter the title for your event</label>
+                      <input id="ae-title" class="form-control" rows="5"></input>
                     </div>
  
                     <div class="form-group">
                       <label for="description">Describe your event:</label>
-                      <tsextarea class="form-control" rows="5" id="description"></tsextarea>
+                      <textarea id="ae-desc" class="form-control" rows="5"></textarea>
                     </div>
                     <div class="md-form">
-                      <label for="dateExample">Select your date</label>
-                      <input placeholder="Selected date" type="text" id="dateExample" class="form-control datepicker">
+                      <label for="ae-date">Select your date</label>
+                      <input id="ae-date" placeholder="Selected date" type="text" class="form-control datepicker">
  
                       <div class="mt-2">Image for the event</div>
-                      <input class="form-control" rows="5" id="image"></input>
+                      <input id="ae-image" class="form-control" rows="5"></input>
 
                       <div class="mt-2">Please enter upto 5 related tags</div>
 
                       <div class="ae-tag-group d-flex flex-row flex-wrap">
-                        <input id="tag1" class="form-control ae-tag-input" rows="5" id="tag1"></input>
+                        <input id="ae-tag1" class="form-control ae-tag-input" rows="5" id="tag1"></input>
 
-                        <input id="tag2" class="form-control ae-tag-input" rows="5" id="tag2"></input>
+                        <input id="ae-tag2" class="form-control ae-tag-input" rows="5" id="tag2"></input>
 
-                        <input id="tag3" class="form-control ae-tag-input" rows="5" id="tag3"></input>
+                        <input id="ae-tag3" class="form-control ae-tag-input" rows="5" id="tag3"></input>
 
-                        <input id="tag4" class="form-control ae-tag-input" rows="5" id="tag4"></input>
+                        <input id="ae-tag4" class="form-control ae-tag-input" rows="5" id="tag4"></input>
 
-                        <input id="tag4" class="form-control ae-tag-input" rows="5" id="tag5"></input>
+                        <input id="ae-tag5" class="form-control ae-tag-input" rows="5" id="tag5"></input>
                       </div>
                      
                     </div>
                     <button id="event-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
+                    <div id="ae-error" class="d-flex justify-content-center text-danger"></div>
+                    <div id="ae-success" class="d-flex justify-content-center text-primary"></div>
                   </form>
                 </div>
 
-            </div>
-            <div class="output">
-              <span id ="output">    </span>
             </div>
         </div>
 

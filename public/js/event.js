@@ -4,24 +4,29 @@ import { postData, getUrl } from './utility.js';
 
 function eventCreate(){
   (async () => {
-      let event = $("#event").val();
-      let description = $("#description").val();
-      let dateExample = $("#dateExample").val();
-      let image = $("#image").val();
+      let title = $("#ae-title").val();
+      let description = $("#ae-desc").val();
+      let date = $("#ae-date").val();
+      let image = $("#ae-image").val();
 
-      const tags = Array(5).keys().map(i => $("#tag" + (i + 1)).val())
+      if (!title || !description || !date || !image) {
+        $("#ae-error").html("Please enter all fields");
+        return;
+      }
+
+      const tags = Array(5).fill().map(i => $("#ae-tag" + (i + 1)).val());
 
     //jwt  -> tokens cache is browser that user is logged in when making request
       // create this data object
       const data = 
       {
-        "title": event,
-        "description": description,
-        "eventStartTime": dateExample, // Needs to be in-terms of unix time.
-        "image": image, 
-        "author": "Rahul Alluri",
-        "tags": [tag1, tag2, tag3, tag4, tag5],
-        "jwt": "<jwt token>"    
+        title,
+        description,
+        image,
+        "eventStartTime": date, // Needs to be in-terms of unix time.
+        "author": "<from jwt token>", // TODO: Get from JWT from localStorage
+        "tags": tags,
+        "jwt": "<jwt token>" // TODO: Get from localStorage 
     };
     
     const response = await postData(getUrl('event/create'), data);
@@ -31,10 +36,10 @@ function eventCreate(){
     console.log(JSON.stringify(jsonResponse));
 
     if (jsonResponse["success"] === true) {
-        $("#output").innerHTML = "Event Successfully posted";
+        $("#ae-success").html("Event Successfully posted!!");
     } else {
         const error = jsonResponse["error"]; // this is the error string;
-        $("#output").innerHTML = error;
+        $("#ae-error").html(error);
     }
   
     })();
