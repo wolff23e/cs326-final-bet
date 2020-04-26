@@ -10,6 +10,24 @@ interface EventData {
     postTimestamp: number,
 }
 
+const eventsData = [{
+    id: 76876423,
+    title: "Come hike with us at the UMass Hiking Club",
+    description: "Please come sign up at the campus center this Wednesday at 4pm!!",
+    eventStartTime: 1587093646,
+    image: "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155",
+    author: "Sathvik Birudavolu", // name
+    postTimestamp: 1584000000,
+},{
+    id: 12887234,
+    title: "Come ski with us at the UMass Ski and Baord Club!",
+    description: "Please come sign up at the campus center this Friday at 10pm!!",
+    eventStartTime: 1589000000,
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
+    author: "Emma Wolff", // name
+    postTimestamp: 1582000000,
+}];
+
 export default class Event {
 
     public static async create(data: any, response: Response): Promise<void> {
@@ -30,27 +48,20 @@ export default class Event {
 
     public static async getPopularEvents(data: any, response: Response): Promise<void> {
 
-        const fakeDataOne = {
-            id: 76876423,
-            title: "Come hike with us at the UMass Hiking Club",
-            description: "Please come sign up at the campus center this Wednesday at 4pm!!",
-            eventStartTime: 1587093646,
-            image: "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155",
-            author: "Sathvik Birudavolu", // name
-            postTimestamp: 1584000000,
-        } as EventData;
+        response.write(JSON.stringify( { success: true, data: eventsData } ))
+        response.end();
+    }
 
-        const fakeDataTwo = {
-            id: 12887234,
-            title: "Come ski with us at the UMass Ski and Baord Club!",
-            description: "Please come sign up at the campus center this Friday at 10pm!!",
-            eventStartTime: 1589000000,
-            image: "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
-            author: "Emma Wolff", // name
-            postTimestamp: 1582000000,
-        } as EventData;
+    public static async getEventByID(data: any, response: Response): Promise<void> {
+        const id = data && !isNaN(data) ? parseInt(data) : -1;
 
-        response.write(JSON.stringify( { success: true, data: [fakeDataOne, fakeDataTwo] } ))
+        if (![0, 1].includes(id)) {
+            response.write(JSON.stringify( { success: false, data: id } ));
+            response.end();
+            return;
+        }
+
+        response.write(JSON.stringify( { success: true, data: eventsData[id] } ))
         response.end();
     }
 
