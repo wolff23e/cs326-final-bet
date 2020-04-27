@@ -36,6 +36,7 @@ export default class Router {
 
       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
       this.router.post('/event/update', [this.authHandler.bind(this), this.updateEventHandler.bind(this)]);
+      this.router.post('/event/delete', [this.authHandler.bind(this), this.deleteEventByIDHandle.bind(this)]);
   
       this.router.all('*', this.errorHandler.bind(this));
     }
@@ -71,6 +72,10 @@ export default class Router {
 
     private async getEventByIDHandle(request: Request, response: Response) : Promise<void> {
       await Event.getEventByID(request.params["id"], response);
+    }
+
+    private async deleteEventByIDHandle(request: Request, response: Response) : Promise<void> {
+      await Event.deleteEventByID(request.body, response);
     }
 
     private async getTagsHandler(request: Request, response: Response) : Promise<void> {

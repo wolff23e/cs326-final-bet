@@ -65,6 +65,18 @@ export default class Event {
         response.end();
     }
 
+    public static async deleteEventByID(data: any, response: Response): Promise<void> {
+        
+        if (!data.id || isNaN(data.id)) {
+            response.write(JSON.stringify( { success: false } ));
+            response.end();
+            return;
+        }
+
+        response.write(JSON.stringify( { success: true } ));
+        response.end();
+    }
+
     public static async getTags(data: any, response: Response): Promise<void> {
 
         const fakeTags = [
