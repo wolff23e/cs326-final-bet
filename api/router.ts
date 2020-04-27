@@ -34,6 +34,7 @@ export default class Router {
 
       this.router.get('/event/:id', this.getEventByIDHandle.bind(this));
 
+      this.router.post('/event/mylist', [this.authHandler.bind(this), this.getUserPostedEventsHandler.bind(this)]);
       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
       this.router.post('/event/update', [this.authHandler.bind(this), this.updateEventHandler.bind(this)]);
       this.router.post('/event/delete', [this.authHandler.bind(this), this.deleteEventByIDHandle.bind(this)]);
@@ -47,7 +48,7 @@ export default class Router {
     }
     
     private async authHandler(request: Request, response: Response, next: NextFunction) : Promise<void> {
-      await User.authenticate(request.body.jwt, response, next);
+      await User.authenticate(request, response, next);
     }
 
     private async registerHandler(request: Request, response: Response) : Promise<void> {
@@ -66,6 +67,10 @@ export default class Router {
       await Event.update(request.body, response);
     }
 
+    private async getUserPostedEventsHandler(request: Request, response: Response) : Promise<void> {
+      await Event.create(request.body, response);
+    }
+
     private async popularEventsHandler(request: Request, response: Response) : Promise<void> {
       await Event.getPopularEvents(request.body, response);
     }
@@ -75,7 +80,7 @@ export default class Router {
     }
 
     private async deleteEventByIDHandle(request: Request, response: Response) : Promise<void> {
-      await Event.deleteEventByID(request.body, response);
+      await Event.deleteEventByID(request.params["id"], response);
     }
 
     private async getTagsHandler(request: Request, response: Response) : Promise<void> {

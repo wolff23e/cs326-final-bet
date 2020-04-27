@@ -77,6 +77,14 @@ export default class Event {
         response.end();
     }
 
+    public static async getUserPostedEvent(data: any, response: Response): Promise<void> {
+
+        // TODO: get all event for author response.locals.authUser
+
+        response.write(JSON.stringify( { success: true, data: eventsData[1] } ))
+        response.end();
+    }
+
     public static async getTags(data: any, response: Response): Promise<void> {
 
         const fakeTags = [

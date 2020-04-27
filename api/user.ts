@@ -1,10 +1,11 @@
-import { Response, NextFunction } from "express";
+import { Response, NextFunction, Request } from "express";
 
 
 export default class User {
 
-    public static async authenticate(jwt: string, response: Response, next: NextFunction): Promise<void> {
-        if (jwt === "<jwt token>") { // JWT is valid
+    public static async authenticate(request: Request, response: Response, next: NextFunction): Promise<void> {
+        if (request.body.jwt === "<jwt token>") { // JWT is valid
+            response.locals.authUser = 1; // set User ID / Email
             next();
         } else {
             response.write(JSON.stringify({ "error": "JWT not valid" }));
