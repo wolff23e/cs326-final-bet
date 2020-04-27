@@ -80,7 +80,7 @@ export default class Router {
     }
 
     private async deleteEventByIDHandle(request: Request, response: Response) : Promise<void> {
-      await Event.deleteEventByID(request.params["id"], response);
+      await Event.deleteEventByID(request.body, response);
     }
 
     private async getTagsHandler(request: Request, response: Response) : Promise<void> {
