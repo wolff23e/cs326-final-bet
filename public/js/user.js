@@ -25,7 +25,7 @@ function login(){
             return;
         }
 
-        const data = { username: email, password };
+        const data = { email, password };
         
         const resp = await postData(getUrl('user/login'), data);
         const jsonResponse = await resp.json();
@@ -36,7 +36,13 @@ function login(){
             showLoginError("Email or password is incorrect");
         } else {
             const jwt = jsonResponse["jwt"];
-            // TODO: save jwt in localStorage
+            
+            // store in localStorage
+            window.localStorage.setItem("jwt", jwt);
+
+            $("#login-email").html("");
+            $("#login-password").html("");
+    
             $("#close-login-modal").click();
         }
 
