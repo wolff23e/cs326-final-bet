@@ -33,7 +33,7 @@ function login(){
         console.log(JSON.stringify(jsonResponse));
 
         if (jsonResponse["success"] !== true) {
-            showLoginError("Email or password is incorrect");
+            showLoginError(jsonResponse["error"]);
         } else {
             const jwt = jsonResponse["jwt"];
             
