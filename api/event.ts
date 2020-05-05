@@ -51,13 +51,25 @@ export default class Event {
 
     public static async update(data: any, response: Response): Promise<void> {
 
-        // on success return { "success": true }
-        // on fail return { "success": false, "error": "<reason>"}
         if(!data.id){
             response.write(JSON.stringify( { success: false, error: "Event id not valid"} ))
             response.end();
             return;
         }
+
+        const findEvent = await db.getEvent(data.id);
+        if (!findEvent) {
+            response.write(JSON.stringify( { success: false, error: "Event to update not found"} ))
+            response.end();
+            return;
+        }
+
+        if (findEvent.author !== response.locals.authUser) {
+            response.write(JSON.stringify( { success: false, error: "User not authorized to update event."} ))
+            response.end();
+            return;
+        }
+
         const updated=await db.updateEvent(data);
         if(!updated){
             response.write(JSON.stringify( { success: false, error: "Event could not be updated"} ))
@@ -95,19 +107,20 @@ export default class Event {
 
     public static async deleteEventByID(data: any, response: Response): Promise<void> {
         
-        if (!data.id || isNaN(data.id)) {
+        if (!data.id) {
             response.write(JSON.stringify( { success: false } ));
             response.end();
             return;
         }
 
-        response.write(JSON.stringify( { success: true } ));
+        const result = await db.deleteEvent(data.id);
+
+        response.write(JSON.stringify( { success: result } ));
         response.end();
     }
 
     public static async getUserPostedEvents(data: any, response: Response): Promise<void> {
 
-        // TODO: get all event for author response.locals.authUser
         const email=response.locals.authUser;
         const events=await db.getUserEvents(email);
         console.log(events);
