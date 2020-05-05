@@ -50,8 +50,6 @@ export default class Event {
 
     public static async update(data: any, response: Response): Promise<void> {
 
-        // on success return { "success": true }
-        // on fail return { "success": false, "error": "<reason>"}
         if(!data.id){
             response.write(JSON.stringify( { success: false, error: "Event id not valid"} ))
             response.end();

@@ -14,8 +14,7 @@ function eventCreate(){
         return;
       }
 
-      const tags = Array(5).fill().map(i => $("#ae-tag" + (i + 1)).val());
-
+      const tags = Array(5).fill().map((_, i) => $("#ae-tag" + (i + 1)).val());
 
       const jwt=window.localStorage.getItem("jwt");
       if(!jwt){
@@ -136,6 +135,7 @@ function editEvent(){
 window.editEvent=editEvent;
 $("#ed-submit").on("click", editEvent);
 function createEventListItem(event){
+  console.log("createEventListItem:" + event.id);
   return ` 
   <li id=${event.id} class="list-group-item tag-row ">
       ${event.title}  
@@ -183,7 +183,8 @@ function deleteEvent(eventid){
 window.deleteEvent=deleteEvent;
 
 function onclickEditEventHelper(eventid){
-  window.localStorage.setItem("eventid",eventid);
+  console.log("onclickEditEventHelper:" + eventid);
+  window.localStorage.setItem("eventid", JSON.stringify({ id: eventid }));
   window.location.href="editevent.html"
 }
 window.onclickEditEventHelper=onclickEditEventHelper;
