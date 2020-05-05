@@ -73,11 +73,20 @@ function getEventbyId(eventid){
     console.log(JSON.stringify(jsonResponse));
 
     if (jsonResponse["success"] === true) {
-       console.log("success");
+       console.log("gebisuccess");
     } else {
         const error = jsonResponse["error"]; // this is the error string;
      
     }
+
+    console.log(jsonResponse.data.id);
+    const eventInfo=jsonResponse.data;
+    eventInfo.tags=['hello','hi','how are yo','welcome','hola'];
+    $("#ed-title").val(eventInfo.title);
+    $("#ed-desc").val(eventInfo.description);
+    $("#ed-date").val(eventInfo.date);
+    $("#ed-image").val(eventInfo.image);
+    Array(5).fill().forEach(i => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
     })();
 }
@@ -90,10 +99,10 @@ function editEvent(){
     (async () => {
 
         const id=window.localStorage.getItem("eventid");
-        let title = $("#ed-titleed").val();
-        let description = $("#ed-desced").val();
+        let title = $("#ed-title").val();
+        let description = $("#ed-desc").val();
         let date = $("#ed-date").val();
-        let image = $("ede-imageed").val();
+        let image = $("ed-image").val();
   
         if (!title || !description || !date || !image) {
           $("#ed-error").html("Please enter all fields");
@@ -121,6 +130,7 @@ function editEvent(){
   
       // for debugging
       console.log(JSON.stringify(jsonResponse));
+      
   
       if (jsonResponse["success"] === true) {
           $("#ae-success").html("Event Successfully Updates!!");

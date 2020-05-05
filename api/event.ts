@@ -9,6 +9,7 @@ export interface EventData {
     image: string,
     author: string, // name
     postTimestamp: number,
+    tags: string[];
 }
 
 const eventsData = [{
