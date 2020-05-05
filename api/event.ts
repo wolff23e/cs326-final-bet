@@ -1,7 +1,8 @@
 import { Response, NextFunction } from "express";
+import { db } from './database';
 
-interface EventData {
-    id: number,
+export interface EventData {
+    _id: number,
     title: string,
     description: string,
     eventStartTime: number,
@@ -32,9 +33,18 @@ export default class Event {
 
     public static async create(data: any, response: Response): Promise<void> {
 
-        // on success return { "success": true }
-        // on fail return { "error": "<reason>", "success": false }
-        response.write(JSON.stringify({ success: true }))
+        // set author and timestamp
+        data.author = response.locals.authUser;
+        data.postTimestamp = Math.floor(Date.now() / 1000);
+
+        const id = await db.addEvent(data);
+
+        if (!id) {
+            response.write(JSON.stringify({ success: false, error: "Error creating event." }));
+        } else {
+            response.write(JSON.stringify({ success: true }))
+        }
+
         response.end();
     }
 

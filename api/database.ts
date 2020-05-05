@@ -1,6 +1,8 @@
 import { MongoClient, Db } from 'mongodb';
 import { mongo as mongoCred } from "../secret.json";
 import { UserData } from './user';
+import { EventData } from './event';
+import * as crypto from 'crypto';
 
 export enum Collection {
     USERS = "users",
@@ -31,7 +33,6 @@ class Database {
     public async addUser (data: UserData): Promise<void> {
         console.log(JSON.stringify(data));
         const userCollection = this.db!.collection(Collection.USERS);
-        console.log(JSON.stringify({...data, _id: data.email}));
     
         try {
             await userCollection.insertOne({...data, _id: data.email});
@@ -53,6 +54,24 @@ class Database {
 
         return null;
     }
+
+    public async addEvent (data: EventData): Promise<string | null> {
+        const eventCollection = this.db!.collection(Collection.EVENTS);
+
+        // make unique ID
+        const dataString = JSON.stringify(data);
+        const eventId = crypto.createHash("sha256").update(dataString).digest("hex");
+
+        try {
+            await eventCollection.insert({...data, _id: eventId});
+            return eventId;
+        } catch (e) {
+            console.log(e);
+        }
+
+        return null;
+    }
+
 }
 
 const db = new Database();
