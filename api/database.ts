@@ -3,6 +3,7 @@ import { mongo as mongoCred } from "../secret.json";
 import { UserData } from './user';
 import { EventData } from './event';
 import * as crypto from 'crypto';
+import { json } from 'express';
 
 export enum Collection {
     USERS = "users",
@@ -70,6 +71,53 @@ class Database {
         }
 
         return null;
+    }
+
+    public async getEvent (id: string): Promise<EventData | null> {
+        const eventCollection = this.db!.collection(Collection.EVENTS);
+        console.log(id);
+    
+        try {
+            const result = await eventCollection.findOne({ _id:id }, { projection: {_id: false} });
+            if (result) return result as EventData;
+        } catch (e) {
+            console.log(e);
+        }
+
+        return null;
+    }
+
+    public async updateEvent (data: EventData): Promise<boolean> {
+        const eventCollection = this.db!.collection(Collection.EVENTS);
+
+        // make unique ID
+        const findEvent = await this.getEvent(data.id);
+        if (!findEvent) {
+            return false;
+        }
+
+        try {
+
+            await eventCollection.update({ _id:data.id },{...data, _id: data.id});
+            return true;
+        } catch (e) {
+            console.log(e);
+        }
+
+        return true;
+    }
+    public async getUserEvents (email: string): Promise<EventData[] | null> {
+        const eventCollection = this.db!.collection(Collection.EVENTS);
+        
+
+        try {
+            const events=await eventCollection.find({author:email});
+            return events.toArray();
+        } catch (e) {
+            console.log(e);
+        }
+
+        return [];
     }
 
 }

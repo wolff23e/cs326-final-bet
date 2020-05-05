@@ -2,7 +2,7 @@ import { Response, NextFunction } from "express";
 import { db } from './database';
 
 export interface EventData {
-    id: number,
+    id: string,
     title: string,
     description: string,
     eventStartTime: number,
@@ -52,6 +52,17 @@ export default class Event {
 
         // on success return { "success": true }
         // on fail return { "success": false, "error": "<reason>"}
+        if(!data.id){
+            response.write(JSON.stringify( { success: false, error: "Event id not valid"} ))
+            response.end();
+            return;
+        }
+        const updated=await db.updateEvent(data);
+        if(!updated){
+            response.write(JSON.stringify( { success: false, error: "Event could not be updated"} ))
+            response.end();
+            return;
+        }
         response.write(JSON.stringify({ success: true }))
         response.end();
     }
@@ -63,15 +74,21 @@ export default class Event {
     }
 
     public static async getEventByID(data: any, response: Response): Promise<void> {
-        const id = data && !isNaN(data) ? parseInt(data) : -1;
-
-        if (![0, 1].includes(id)) {
-            response.write(JSON.stringify( { success: false, data: id } ));
+        if(!data.id){
+            response.write(JSON.stringify( { success: false, error: "Event id not valid"} ))
             response.end();
             return;
         }
 
-        response.write(JSON.stringify( { success: true, data: eventsData[id] } ))
+        const eventData = await db.getEvent(data.id);
+
+        if(!eventData){
+            response.write(JSON.stringify( { success: false, error: "Event not found"} ))
+            response.end();
+            return;
+        }
+
+        response.write(JSON.stringify( { success: true, data: eventData } ))
         response.end();
     }
 
@@ -87,11 +104,13 @@ export default class Event {
         response.end();
     }
 
-    public static async getUserPostedEvent(data: any, response: Response): Promise<void> {
+    public static async getUserPostedEvents(data: any, response: Response): Promise<void> {
 
         // TODO: get all event for author response.locals.authUser
-
-        response.write(JSON.stringify( { success: true, data: eventsData } ))
+        const email=response.locals.authUser;
+        const events=await db.getUserEvents(email);
+        console.log(events);
+        response.write(JSON.stringify( { success: true, data: events } ))
         response.end();
     }
 

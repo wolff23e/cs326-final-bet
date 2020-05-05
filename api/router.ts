@@ -68,7 +68,7 @@ export default class Router {
     }
 
     private async getUserPostedEventsHandler(request: Request, response: Response) : Promise<void> {
-      await Event.getUserPostedEvent(request.body, response);
+      await Event.getUserPostedEvents(request.body, response);
     }
 
     private async popularEventsHandler(request: Request, response: Response) : Promise<void> {
