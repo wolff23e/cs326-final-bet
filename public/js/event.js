@@ -117,7 +117,7 @@ function showmyevents(){
     const data = window.localStorage.getItem("jwt");
     console.log(data);
     
-    const resp = await postData(getUrl('event/mylist'), data);
+    const resp = await postData(getUrl('event/mylist'), { jwt: data });
     const jsonResponse = await resp.json();
 
     console.log(JSON.stringify(jsonResponse));

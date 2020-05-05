@@ -2,7 +2,7 @@ import { Response, NextFunction } from "express";
 import { db } from './database';
 
 export interface EventData {
-    _id: number,
+    id: number,
     title: string,
     description: string,
     eventStartTime: number,
@@ -91,7 +91,7 @@ export default class Event {
 
         // TODO: get all event for author response.locals.authUser
 
-        response.write(JSON.stringify( { success: true, data: eventsData[1] } ))
+        response.write(JSON.stringify( { success: true, data: eventsData } ))
         response.end();
     }
 
