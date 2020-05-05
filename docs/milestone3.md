@@ -58,11 +58,15 @@ User.ts: Javascript file used to call database functions to manipulate user info
 
 ### Work distribution: 
 
-Emma:""
+#### Emma: 
+
+Not Responsive
 
 #### Rahul: 
 
-Backend: GeteventbyID, updateEvent, getUserevents
-Front end: Edit events, Update events, show event list
+- Backend: GeteventbyID, updateEvent, getUserevents
+- Front end: Edit events, Update events, show event list
 
-Sathvik:
+#### Sathvik:
+
+- Backend & Frontend: login, registration, jwt authentication (for all requests requiring auth), create event, delete event.
