@@ -21,6 +21,7 @@
 <script> 
 $(document).ready(function() {
   $('#navbarFill').load("navbar.html");
+  showmyevents();
 });
 </script>
 
@@ -32,14 +33,14 @@ $(document).ready(function() {
   
           <div class="events-column d-flex flex-column justify-content-center align-items-center">
             <h1 class="filter-title">Modify your events!</h1>
-            <h1 class="filter-title">Modify your events!</h1>
-          <button id="load-events" class="btn btn-primary btn-dark">Load</button>
 
         </div>
-          <div class="yourevents"> </div>
+          <div class="yourevents"> 
+            <ul id="event-list" class="list-group mt-5"></ul>
+          </div>
 
 
-            </script>
+
     
        
               
