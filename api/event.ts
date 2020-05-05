@@ -57,6 +57,20 @@ export default class Event {
             response.end();
             return;
         }
+
+        const findEvent = await db.getEvent(data.id);
+        if (!findEvent) {
+            response.write(JSON.stringify( { success: false, error: "Event to update not found"} ))
+            response.end();
+            return;
+        }
+
+        if (findEvent.author !== response.locals.authUser) {
+            response.write(JSON.stringify( { success: false, error: "User not authorized to update event."} ))
+            response.end();
+            return;
+        }
+
         const updated=await db.updateEvent(data);
         if(!updated){
             response.write(JSON.stringify( { success: false, error: "Event could not be updated"} ))
@@ -106,7 +120,6 @@ export default class Event {
 
     public static async getUserPostedEvents(data: any, response: Response): Promise<void> {
 
-        // TODO: get all event for author response.locals.authUser
         const email=response.locals.authUser;
         const events=await db.getUserEvents(email);
         console.log(events);
