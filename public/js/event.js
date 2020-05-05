@@ -53,19 +53,38 @@ function eventCreate(){
 
 $("#event-submit").on("click", eventCreate);
 
-export function updateEvent(){
+
+function getEventbyId(eventid){
   (async () => {
-    //where we will display the corresponding events for user
 
-    if (true) {//json author matches user currently using) {
-      $("#yourevent").innerHTML = "";
-  } else {
-      const notFound = jsonResponse["No events found for this user."]; // this is the error string;
-      $("#yourevent").innerHTML = notFound;
-  }
 
-})();
+      const jwt=window.localStorage.getItem("jwt");
+      if(!jwt){
+        console.log("Not logged in");
+        return;
+      }
+    //jwt  -> tokens cache is browser that user is logged in when making request
+      // create this data objects
+    
+    const response = await postData(getUrl('event/get'),{'id':eventid});
+    const jsonResponse = await response.json(); 
+
+    // for debugging
+    console.log(JSON.stringify(jsonResponse));
+
+    if (jsonResponse["success"] === true) {
+       console.log("success");
+    } else {
+        const error = jsonResponse["error"]; // this is the error string;
+     
+    }
+  
+    })();
 }
+window.getEventbyId=getEventbyId;
+  
+
+
 function editEvent(){
 
     (async () => {
