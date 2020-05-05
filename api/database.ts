@@ -63,7 +63,7 @@ class Database {
         const eventId = crypto.createHash("sha256").update(dataString).digest("hex");
 
         try {
-            await eventCollection.insert({...data, _id: eventId});
+            await eventCollection.insert({...data, _id: eventId, id: eventId });
             return eventId;
         } catch (e) {
             console.log(e);
