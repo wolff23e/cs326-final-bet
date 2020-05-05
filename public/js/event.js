@@ -66,25 +66,28 @@ export function updateEvent(){
 
 })();
 }
-function editEvent(eventid){
-  
+function editEvent(){
+
     (async () => {
-        let title = $("#ae-titleed").val();
-        let description = $("#ae-desced").val();
-        let date = $("#ae-dateed").val();
-        let image = $("#ae-imageed").val();
+
+        const id=window.localStorage.getItem("eventid");
+        let title = $("#ed-titleed").val();
+        let description = $("#ed-desced").val();
+        let date = $("#ed-date").val();
+        let image = $("ede-imageed").val();
   
         if (!title || !description || !date || !image) {
-          $("#ae-error").html("Please enter all fields");
+          $("#ed-error").html("Please enter all fields");
           return;
         }
         const jwt=window.localStorage.getItem("jwt");
-        const tags = Array(5).fill().map(i => $("#ae-taged" + (i + 1)).val());
+        const tags = Array(5).fill().map(i => $("#ed-taged" + (i + 1)).val());
   
       //jwt  -> tokens cache is browser that user is logged in when making request
         // create this data object
         const data = 
         {
+          id,
           title,
           description,
           image,
@@ -102,15 +105,69 @@ function editEvent(eventid){
   
       if (jsonResponse["success"] === true) {
           $("#ae-success").html("Event Successfully Updates!!");
+          window.localStorage.setItem("eventid","");
       } else {
           const error = jsonResponse["error"]; // this is the error string;
           $("#ae-error").html(error);
       }
-    
+      
       })();
   
 }
+window.editEvent=editEvent;
+$("#ed-submit").on("click", editEvent);
+function createEventListItem(event){
+  return ` 
+  <li id=${event.id} class="list-group-item tag-row ">
+      ${event.title}  
 
+    <button onclick="onclickEditEventHelper(${event.id})" id="event-edit" class="btn btn-primary btn-dark mt-2">Edit</button>
+    <button onclick="deleteEvent(${event.id})" id="event-delete" class="btn btn-primary btn-dark mt-2">delete</button>
+
+
+  </li>
+  `;
+}
+function deleteEvent(eventid){
+  (async () => {
+
+  
+
+    const jwt=window.localStorage.getItem("jwt");
+    if(!jwt){
+      console.log("Not logged in");
+      return;
+    }
+  //jwt  -> tokens cache is browser that user is logged in when making request
+    // create this data objects
+    const data = 
+    {
+      "id":eventid,
+      "jwt":  jwt// TODO: Get from localStorage 
+  };
+  
+  const response = await postData(getUrl('event/delete'), data);
+  const jsonResponse = await response.json(); 
+
+  // for debugging
+  console.log(JSON.stringify(jsonResponse));
+
+  if (jsonResponse["success"] === true) {
+    console.log("successfully deleted");
+  } else {
+      const error = jsonResponse["error"]; // this is the error string;
+      console.log(error);
+  }
+
+  })();
+}
+window.deleteEvent=deleteEvent;
+
+function onclickEditEventHelper(eventid){
+  window.localStorage.setItem("eventid",eventid);
+  window.location.href="editevent.html"
+}
+window.onclickEditEventHelper=onclickEditEventHelper;
 function showmyevents(){
   (async () => {
     console.log("hello");
@@ -135,17 +192,7 @@ function showmyevents(){
 }
 window.showmyevents=showmyevents;
 
-function creatEventListItem(event){
-  return ` 
-  <li id=${event.id} class="list-group-item tag-row ">
-    <a href="#">
-      ${event.title}  
-    </a>
-    <button onclick="editevent(${event.id}) id="event-edit" class="btn btn-primary btn-dark mt-2">Edit</button>
 
-  </li>
-  `;
-}
 
 function createTagListItem(tagName) {
   return ` 

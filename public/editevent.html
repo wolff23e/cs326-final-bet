@@ -21,19 +21,11 @@
 <script> 
 $(document).ready(function() {
   $('#navbarFill').load("navbar.html");
+  const eventid=window.localStorage.getItem("eventid");
+  console.log(eventid);
 });
-let sample={
-  "success": true,
-  "data": {
-    "id": 12887234,
-    "title": "Come ski with us at the UMass Ski and Baord Club!",
-    "description": "Please come sign up at the campus center this Friday at 10pm!!",
-    "eventStartTime": 1589000000,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
-    "author": "Emma Wolff",
-    "postTimestamp": 1582000000
-  }
-}
+
+
 </script>
 
 <body>
@@ -45,45 +37,45 @@ let sample={
             <div class="form-container">
 
               
-              <h1 class="filter-title">Edit your event!</h1>
+              <h1 class="filter-title">it your event!</h1>
                 <div class="form">
                   
                   <form onsubmit="return false;">
 
                     <div class="form-group">
                       <label for="description">Enter the title for your event</label>
-                      <input id="ae-titleed" class="form-control" rows="5"></input>
+                      <input id="ed-title" class="form-control" rows="5"></input>
                     </div>
  
                     <div class="form-group">
                       <label for="description">Describe your event:</label>
-                      <textarea id="ae-desced" class="form-control" rows="5"></textarea>
+                      <textarea id="ed-desc" class="form-control" rows="5"></textarea>
                     </div>
                     <div class="md-form">
-                      <label for="ae-dateed">Select your date</label>
-                      <input id="ae-dateed" placeholder="Selected date" type="text" class="form-control datepicker">
+                      <label for="ed-date">Select your date</label>
+                      <input id="ed-date" placeholder="Selected date" type="text" class="form-control datepicker">
  
                       <div class="mt-2">Image for the event</div>
-                      <input id="ae-imageed" class="form-control" rows="5"></input>
+                      <input id="ed-image" class="form-control" rows="5"></input>
 
                       <div class="mt-2">Please enter upto 5 related tags</div>
 
-                      <div class="ae-tag-group d-flex flex-row flex-wrap">
-                        <input id="ae-tag1ed" class="form-control ae-tag-input" rows="5" id="tag1"></input>
+                      <div class="ed-tag-group d-flex flex-row flex-wrap">
+                        <input id="ed-tag1" class="form-control ed-tag-input" rows="5" id="tag1"></input>
 
-                        <input id="ae-tag2ed" class="form-control ae-tag-input" rows="5" id="tag2"></input>
+                        <input id="ed-tag2" class="form-control ed-tag-input" rows="5" id="tag2"></input>
 
-                        <input id="ae-tag3ed" class="form-control ae-tag-input" rows="5" id="tag3"></input>
+                        <input id="ed-tag3" class="form-control ed-tag-input" rows="5" id="tag3"></input>
 
-                        <input id="ae-tag4ed" class="form-control ae-tag-input" rows="5" id="tag4"></input>
+                        <input id="ed-tag4" class="form-control ed-tag-input" rows="5" id="tag4"></input>
 
-                        <input id="ae-tag5ed" class="form-control ae-tag-input" rows="5" id="tag5"></input>
+                        <input id="ed-tag5" class="form-control ed-tag-input" rows="5" id="tag5"></input>
                       </div>
                      
                     </div>
-                    <button id="event-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
-                    <div id="ae-error" class="d-flex justify-content-center text-danger"></div>
-                    <div id="ae-success" class="d-flex justify-content-center text-primary"></div>
+                    <button id="ed-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
+                    <div id="ed-error" class="d-flex justify-content-center text-danger"></div>
+                    <div id="ed-success" class="d-flex justify-content-center text-primary"></div>
                   </form>
                 </div>
 
