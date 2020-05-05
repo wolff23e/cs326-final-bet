@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>5College Add Event</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<script> 
+$(document).ready(function() {
+  $('#navbarFill').load("navbar.html");
+});
+let sample={
+  "success": true,
+  "data": {
+    "id": 12887234,
+    "title": "Come ski with us at the UMass Ski and Baord Club!",
+    "description": "Please come sign up at the campus center this Friday at 10pm!!",
+    "eventStartTime": 1589000000,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
+    "author": "Emma Wolff",
+    "postTimestamp": 1582000000
+  }
+}
+</script>
+
+<body>
+
+  <div id="navbarFill"></div>
+
+    <div class="container-fluid d-flex flex-row">
+        <div class="events-column d-flex flex-column justify-content-center align-items-center">
+            <div class="form-container">
+
+              
+              <h1 class="filter-title">Edit your event!</h1>
+                <div class="form">
+                  
+                  <form onsubmit="return false;">
+
+                    <div class="form-group">
+                      <label for="description">Enter the title for your event</label>
+                      <input id="ae-titleed" class="form-control" rows="5"></input>
+                    </div>
+ 
+                    <div class="form-group">
+                      <label for="description">Describe your event:</label>
+                      <textarea id="ae-desced" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class="md-form">
+                      <label for="ae-dateed">Select your date</label>
+                      <input id="ae-dateed" placeholder="Selected date" type="text" class="form-control datepicker">
+ 
+                      <div class="mt-2">Image for the event</div>
+                      <input id="ae-imageed" class="form-control" rows="5"></input>
+
+                      <div class="mt-2">Please enter upto 5 related tags</div>
+
+                      <div class="ae-tag-group d-flex flex-row flex-wrap">
+                        <input id="ae-tag1ed" class="form-control ae-tag-input" rows="5" id="tag1"></input>
+
+                        <input id="ae-tag2ed" class="form-control ae-tag-input" rows="5" id="tag2"></input>
+
+                        <input id="ae-tag3ed" class="form-control ae-tag-input" rows="5" id="tag3"></input>
+
+                        <input id="ae-tag4ed" class="form-control ae-tag-input" rows="5" id="tag4"></input>
+
+                        <input id="ae-tag5ed" class="form-control ae-tag-input" rows="5" id="tag5"></input>
+                      </div>
+                     
+                    </div>
+                    <button id="event-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
+                    <div id="ae-error" class="d-flex justify-content-center text-danger"></div>
+                    <div id="ae-success" class="d-flex justify-content-center text-primary"></div>
+                  </form>
+                </div>
+
+            </div>
+        </div>
+
+      
+    </div>
+
+</body>
+</html>
