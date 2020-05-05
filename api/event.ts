@@ -106,13 +106,15 @@ export default class Event {
 
     public static async deleteEventByID(data: any, response: Response): Promise<void> {
         
-        if (!data.id || isNaN(data.id)) {
+        if (!data.id) {
             response.write(JSON.stringify( { success: false } ));
             response.end();
             return;
         }
 
-        response.write(JSON.stringify( { success: true } ));
+        const result = await db.deleteEvent(data.id);
+
+        response.write(JSON.stringify( { success: result } ));
         response.end();
     }
 

@@ -100,6 +100,20 @@ class Database {
 
         return true;
     }
+
+    public async deleteEvent (id: string): Promise<boolean> {
+        const eventCollection = this.db!.collection(Collection.EVENTS);
+
+        try {
+            await eventCollection.deleteOne({ _id: id });
+            return true;
+        } catch (e) {
+            console.log(e);
+        }
+
+        return false;
+    }
+
     public async getUserEvents (email: string): Promise<EventData[] | null> {
         const eventCollection = this.db!.collection(Collection.EVENTS);
         
