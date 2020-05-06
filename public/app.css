@@ -67,7 +67,7 @@ body {
     flex-direction: column;
     width: 100%;
     margin-top: 3em;
-    background-color: purple;
+    background-color: rgb(172, 88, 172);
     padding: 1em;
 }
 
@@ -96,4 +96,8 @@ body {
     display: flex;
     width: 10em;
     margin: 1em 1em 1em 0;
+}
+
+.blockquote{
+    margin-top: 20px;
 }
