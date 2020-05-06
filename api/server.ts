@@ -2,9 +2,12 @@
 import Router from './router';
 import { db } from './database';
 
-const PORT = process.env.PORT || 8080;
 
 const router = new Router();
+
+const PORT = process.env.PORT || 8080;
+
+
 
 router.listen(PORT, () =>
     { 

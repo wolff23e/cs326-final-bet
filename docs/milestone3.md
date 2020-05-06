@@ -60,7 +60,7 @@ User.ts: Javascript file used to call database functions to manipulate user info
 
 #### Emma: 
 
-Not Responsive
+- Front end: View all tags and events, Clubs and Orgs, unified overall layout
 
 #### Rahul: 
 
