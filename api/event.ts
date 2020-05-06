@@ -7,7 +7,7 @@ export interface EventData {
     description: string,
     eventStartTime: number,
     image: string,
-    tags: string,
+    tags: string[],
     author: string, // name
     postTimestamp: number,
     
