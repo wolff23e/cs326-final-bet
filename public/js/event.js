@@ -268,3 +268,50 @@ function getTags(tagsLimit){
 };
 
 window.getTags = getTags;
+
+function showPopularEvents(eventnum){
+  (async () => {
+    console.log("show popular events called");
+    const data = window.localStorage.getItem("jwt");
+    console.log(data);
+    const num=eventnum;
+    const resp = await postData(getUrl("event/recent"),{limit: eventnum});
+    const jsonResponse = await resp.json();
+    console.log(JSON.stringify(jsonResponse.data));
+  
+    if (jsonResponse["success"] !== true) {
+        // TODO: show error somehow.
+      return;
+      } else {
+      jsonResponse.data.forEach(event=>{
+        $(creatEventItem(event)).appendTo("#events");
+      })
+      }
+  
+    })();
+    
+}
+function creatEventItem(data){
+  return `
+  <div class="event">
+                    <img class="event-img" src="${data.image}">
+                    <div class="event-title">
+                      "${data.title}"
+                  </div>
+                  <div class="event-desc mt-2">
+                   "${data.description}"
+                </div>
+                    <div class="border-top border-dark mt-4"></div>
+                    <div class="d-flex flex-row mt-1 justify-content-between">
+                        <div class="event-time">
+                            <b>Time:</b> "${data.eventStartTime}"
+                        </div>
+                        <div class="event-place">
+                            <b>Location:</b> "${data.location}"
+                        </div>
+                    </div>
+                </div>
+                
+  `
+}
+window.showPopularEvents=showPopularEvents;
