@@ -1,5 +1,33 @@
 import { postData, getUrl } from './utility.js';
 
+// Check if logged in and set UI accordingly
+
+function updateLoginUI () {
+    const jwt = window.localStorage.getItem("jwt");
+    if (jwt) {
+        console.log("logged in!");
+        $("#nav-register").hide();
+        $("#nav-login").hide();
+        $("#nav-logout").show();
+    } else {
+        console.log("Not logged in!");
+        $("#nav-register").show();
+        $("#nav-login").show();
+        $("#nav-logout").hide();
+    }
+}
+
+window.updateLoginUI = updateLoginUI;
+
+// Logout
+
+function logout () {
+    window.localStorage.removeItem("jwt");
+    updateLoginUI();
+}
+
+window.logout = logout;
+
 
 // Login
 
@@ -44,6 +72,9 @@ function login(){
             $("#login-password").html("");
     
             $("#close-login-modal").click();
+
+            updateLoginUI();
+            window.location.href="index.html"
         }
 
     })();

@@ -8,9 +8,8 @@ export interface EventData {
     eventStartTime: number,
     image: string,
     tags: string[],
-    author: string, // name
-    postTimestamp: number,
-    
+    author: string,
+    postTimestamp: number
 }
 
 const eventsData = [{

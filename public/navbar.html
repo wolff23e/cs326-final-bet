@@ -1,3 +1,8 @@
+<script> 
+  $(document).ready(function() {
+    updateLoginUI();
+  });
+</script>
 
 <!-- Login Modal -->
 <div class="modal" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -40,32 +45,35 @@
     <a class="navbar-brand" href="#">5 College FOMO</a>
     
         <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="index.html">Events</a>
-            </li>
-        <li class="nav-item">
-            <a class="nav-link" href="groups.html">Clubs & Orgs</a>
-        </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="index.html">Events</a>
+              </li>
+          <li class="nav-item">
+              <a class="nav-link" href="groups.html">Clubs & Orgs</a>
+          </li>
         </ul>
 
         <ul class="navbar-nav mr-5">
-        <li class="nav-item active">
-            <a href="addevent.html">
-                <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">Create Event</button>
+          <li class="nav-item active">
+              <a href="addevent.html">
+                  <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">Create Event</button>
+              </a>
+          </li>
+          <li id="nav-register" class="nav-item active">
+              <a href="registration.html">
+                  <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">Register</button>
+              </a>
+          </li>
+          <li class="nav-item active">
+            <a href="myevent.html">
+                <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">My events</button>
             </a>
-        </li>
-        <li class="nav-item active">
-            <a href="registration.html">
-                <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">Register</button>
-            </a>
-        </li>
-        <li class="nav-item active">
-          <a href="myevent.html">
-              <button class="btn btn-danger my-sm-0 mr-2 btn-dark" type="submit">My events</button>
-          </a>
-      </li>
-        <li class="nav-item active">
-            <button class="btn btn-success my-2 my-sm-0 btn-dark" data-toggle="modal" data-target="#modalLoginForm">Login</button>
-        </li>
+          </li>
+          <li id="nav-login" class="nav-item active">
+              <button class="btn btn-success my-2 my-sm-0 btn-dark" data-toggle="modal" data-target="#modalLoginForm">Login</button>
+          </li>
+          <li id="nav-logout" class="nav-item active">
+            <button class="btn btn-success my-2 my-sm-0 btn-danger" onclick="logout()" >Logout</button>
+          </li>
         </ul>
     </nav>
