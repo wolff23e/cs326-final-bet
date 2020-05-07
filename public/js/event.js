@@ -9,7 +9,8 @@ function eventCreate(){
       let date = $("#ae-date").val();
       let image = $("#ae-image").val();
       let location=$("#ae-location").val();
-
+      console.log(date);
+      console.log(date.getTime());
       if (!title || !description || !date || !image) {
         $("#ae-error").html("Please enter all fields");
         return;
