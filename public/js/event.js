@@ -111,17 +111,9 @@ $("#event-preview").on("click", eventPreview);
 
 function getEventbyId(eventid){
   (async () => {
-
-
-      const jwt=window.localStorage.getItem("jwt");
-      if(!jwt){
-        console.log("Not logged in");
-        return;
-      }
-    //jwt  -> tokens cache is browser that user is logged in when making request
-      // create this data objects
     
-    const response = await postData(getUrl('event/get'),{'id':eventid});
+    console.log("getEventbyId:" + eventid);
+    const response = await postData(getUrl('event/get'), { id: eventid });
     const jsonResponse = await response.json(); 
 
     // for debugging
@@ -134,14 +126,13 @@ function getEventbyId(eventid){
      
     }
 
-    console.log(jsonResponse.data.id);
     const eventInfo=jsonResponse.data;
-    eventInfo.tags=['hello','hi','how are yo','welcome','hola'];
+
     $("#ed-title").val(eventInfo.title);
     $("#ed-desc").val(eventInfo.description);
     $("#ed-date").val(eventInfo.date);
     $("#ed-image").val(eventInfo.image);
-    Array(5).fill().forEach(i => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
+    Array(5).fill().forEach((_, i) => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
     })();
 }
@@ -205,10 +196,10 @@ $("#ed-submit").on("click", editEvent);
 function createEventListItem(event){
   console.log("createEventListItem:" + event.id);
   return `
-  <li id=${event.id} class="list-group-item tag-row font-weight-bold mt-2 text-left">
+  <li id=${event.id} class="list-group-item tag-row mt-20">
     <div>${event.title}</div>
-    <button onclick="onclickEditEventHelper('${event.id}')" id="event-edit" class="btn btn-primary btn-dark mt-4">Edit</button>
-    <button onclick="deleteEvent('${event.id}')" id="event-delete" class="btn btn-primary btn-dark mt-4">Delete</button>
+    <button onclick="onclickEditEventHelper('${event.id}')" id="event-edit" class="float-right btn btn-primary btn-dark mt-20">Edit</button>
+    <button onclick="deleteEvent('${event.id}')" id="event-delete" class="float-right btn btn-primary btn-dark mt-20">Delete</button>
 
 
   </li>
@@ -246,10 +237,12 @@ window.deleteEvent = deleteEvent;
 
 function onclickEditEventHelper(eventid){
   console.log("onclickEditEventHelper:" + eventid);
-  window.localStorage.setItem("eventid", JSON.stringify({ id: eventid }));
+  window.localStorage.setItem("eventid", eventid );
   window.location.href="editevent.html"
 }
+
 window.onclickEditEventHelper=onclickEditEventHelper;
+
 function showmyevents(){
   (async () => {
     console.log("hello");

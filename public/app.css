@@ -111,3 +111,9 @@ body {
 .openingquotes{
     margin: 40px;
 }
+
+.yourevents {
+    margin-top: 10px;
+    justify-content: center;
+    min-width: 500px;
+}
