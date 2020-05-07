@@ -6,14 +6,22 @@ function updateLoginUI () {
     const jwt = window.localStorage.getItem("jwt");
     if (jwt) {
         console.log("logged in!");
+
         $("#nav-register").hide();
         $("#nav-login").hide();
         $("#nav-logout").show();
+
+        $("#nav-myevents").show();
+        $("#nav-addevent").show();
     } else {
         console.log("Not logged in!");
+
         $("#nav-register").show();
         $("#nav-login").show();
         $("#nav-logout").hide();
+
+        $("#nav-myevents").hide();
+        $("#nav-addevent").hide();
     }
 }
 
