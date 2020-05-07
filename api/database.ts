@@ -30,7 +30,20 @@ class Database {
 
         
     }
+    
+    public async getTaggedEvents (tag: string): Promise<EventData[] > {
+        const eventCollection = this.db!.collection(Collection.EVENTS); 
+        console.log(tag);
 
+        try {
+            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).toArray();
+
+            if (result) return result as EventData[];
+        } catch (e) {
+            console.log(e);
+        }
+        return [];
+    } 
 
     public async addUser (data: UserData): Promise<void> {
         console.log(JSON.stringify(data));

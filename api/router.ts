@@ -33,6 +33,7 @@ export default class Router {
       this.router.post('/event/tags', this.getTagsHandler.bind(this));
 
       this.router.post('/event/get', this.getEventByIDHandle.bind(this));
+      this.router.post('/event/gettags', this.getEventByTagHandler.bind(this));
 
       this.router.post('/event/mylist', [this.authHandler.bind(this), this.getUserPostedEventsHandler.bind(this)]);
       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
@@ -81,6 +82,10 @@ export default class Router {
 
     private async deleteEventByIDHandle(request: Request, response: Response) : Promise<void> {
       await Event.deleteEventByID(request.body, response);
+    }
+
+    private async getEventByTagHandler(request: Request, response: Response) : Promise<void> {
+      await Event.getEventsByTag(request.body, response);
     }
 
     private async getTagsHandler(request: Request, response: Response) : Promise<void> {
