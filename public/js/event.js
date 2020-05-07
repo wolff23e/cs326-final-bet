@@ -55,17 +55,9 @@ $("#event-submit").on("click", eventCreate);
 
 function getEventbyId(eventid){
   (async () => {
-
-
-      const jwt=window.localStorage.getItem("jwt");
-      if(!jwt){
-        console.log("Not logged in");
-        return;
-      }
-    //jwt  -> tokens cache is browser that user is logged in when making request
-      // create this data objects
     
-    const response = await postData(getUrl('event/get'),{'id':eventid});
+    console.log("getEventbyId:" + eventid);
+    const response = await postData(getUrl('event/get'), { id: eventid });
     const jsonResponse = await response.json(); 
 
     // for debugging
@@ -78,14 +70,13 @@ function getEventbyId(eventid){
      
     }
 
-    console.log(jsonResponse.data.id);
     const eventInfo=jsonResponse.data;
-    eventInfo.tags=['hello','hi','how are yo','welcome','hola'];
+
     $("#ed-title").val(eventInfo.title);
     $("#ed-desc").val(eventInfo.description);
     $("#ed-date").val(eventInfo.date);
     $("#ed-image").val(eventInfo.image);
-    Array(5).fill().forEach(i => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
+    Array(5).fill().forEach((_, i) => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
     })();
 }
@@ -188,10 +179,12 @@ window.deleteEvent = deleteEvent;
 
 function onclickEditEventHelper(eventid){
   console.log("onclickEditEventHelper:" + eventid);
-  window.localStorage.setItem("eventid", JSON.stringify({ id: eventid }));
+  window.localStorage.setItem("eventid", eventid );
   window.location.href="editevent.html"
 }
+
 window.onclickEditEventHelper=onclickEditEventHelper;
+
 function showmyevents(){
   (async () => {
     console.log("hello");
