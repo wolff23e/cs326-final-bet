@@ -138,10 +138,10 @@ $("#ed-submit").on("click", editEvent);
 function createEventListItem(event){
   console.log("createEventListItem:" + event.id);
   return `
-  <li id=${event.id} class="list-group-item tag-row font-weight-bold mt-2 text-left">
+  <li id=${event.id} class="list-group-item tag-row mt-20">
     <div>${event.title}</div>
-    <button onclick="onclickEditEventHelper('${event.id}')" id="event-edit" class="btn btn-primary btn-dark mt-4">Edit</button>
-    <button onclick="deleteEvent('${event.id}')" id="event-delete" class="btn btn-primary btn-dark mt-4">Delete</button>
+    <button onclick="onclickEditEventHelper('${event.id}')" id="event-edit" class="float-right btn btn-primary btn-dark mt-20">Edit</button>
+    <button onclick="deleteEvent('${event.id}')" id="event-delete" class="float-right btn btn-primary btn-dark mt-20">Delete</button>
 
 
   </li>
