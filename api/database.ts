@@ -53,10 +53,11 @@ class Database {
         for(var i = 0; i < eventArray.length; i++) {
             var obj = eventArray[i];
             if(obj.tags[i] != null){
-                tagArrayReturn[i] = (obj.tags[i]);
+                tagArrayReturn.push(...obj.tags);
             }
         }
-        const uniqueItems = Array.from(new Set(tagArrayReturn));
+        var uniqueItems = Array.from(new Set(tagArrayReturn));
+        uniqueItems = uniqueItems.filter(item => item);
         return uniqueItems;
     } 
 
