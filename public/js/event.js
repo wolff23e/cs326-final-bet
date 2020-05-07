@@ -60,7 +60,8 @@ function eventPreview(){
       let description = $("#ae-desc").val();
       let date = $("#ae-date").val();
       let image = $("#ae-image").val();
-
+      let location=$("#ae-location").val();
+      
       if (!title || !description || !date || !image) {
         $("#ae-error").html("Please enter all fields");
         return;
