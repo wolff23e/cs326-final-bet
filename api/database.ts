@@ -101,6 +101,21 @@ class Database {
         return null;
     }
 
+    public async getRecentEvents (limit: number): Promise<EventData[]> {
+        const eventCollection = this.db!.collection(Collection.EVENTS); 
+        console.log(limit);
+    
+        try {
+            const result = await eventCollection.find().sort( { postTimestamp: -1 }).limit(limit).toArray();
+            if (result) return result as EventData[];
+        } catch (e) {
+            console.log(e);
+        }
+
+        return [];
+    }
+
+
     public async updateEvent (data: EventData): Promise<boolean> {
         const eventCollection = this.db!.collection(Collection.EVENTS);
 

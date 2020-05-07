@@ -32,6 +32,8 @@ const eventsData = [{
 
 export default class Event {
 
+    private static DEFAULT_EVENT_LIMIT = 10;
+
     public static async create(data: any, response: Response): Promise<void> {
 
         // set author and timestamp
@@ -80,9 +82,17 @@ export default class Event {
         response.end();
     }
 
-    public static async getPopularEvents(data: any, response: Response): Promise<void> {
 
-        response.write(JSON.stringify( { success: true, data: eventsData } ))
+    public static async getEvents(data: any, response: Response): Promise<void> {
+
+        let limit = data.limit;
+        if (!limit || isNaN(limit)) {
+            limit = this.DEFAULT_EVENT_LIMIT;
+        }
+
+        const events = await db.getRecentEvents(limit);
+
+        response.write(JSON.stringify( { success: true, data: events } ))
         response.end();
     }
 
