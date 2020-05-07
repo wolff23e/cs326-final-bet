@@ -132,6 +132,7 @@ function getEventbyId(eventid){
     $("#ed-desc").val(eventInfo.description);
     $("#ed-date").val(eventInfo.date);
     $("#ed-image").val(eventInfo.image);
+    $("#ed-location").val(eventInfo.location);
     Array(5).fill().forEach((_, i) => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
     })();
@@ -166,7 +167,7 @@ function editEvent(){
           title,
           description,
           image,
-          
+          "location":location,
           "eventStartTime": date, // Needs to be in-terms of unix time.
           "author": "<from jwt token>", // TODO: Get from JWT from localStorage
           "tags": tags,
