@@ -1,9 +1,10 @@
 import { MongoClient, Db } from 'mongodb';
 import { mongo as mongoCred } from "../secret.json";
 import { UserData } from './user';
-import { EventData } from './event';
+import Event, { EventData } from './event';
 import * as crypto from 'crypto';
 import { json } from 'express';
+import { eventNames } from 'cluster';
 
 export enum Collection {
     USERS = "users",
@@ -44,6 +45,22 @@ class Database {
         }
         return [];
     } 
+    //will be for tag pulling
+    public async tagInterestDisplay (limit: number): Promise<string[] > {
+        const eventArray = await this.getRecentEvents(limit);
+        const tagArrayReturn = [];
+        //make loop function for tags
+        for(var i = 0; i < eventArray.length; i++) {
+            var obj = eventArray[i];
+            if(obj.tags[i] != null){
+                tagArrayReturn[i] = (obj.tags[i]);
+            }
+        }
+        const uniqueItems = Array.from(new Set(tagArrayReturn));
+        return uniqueItems;
+    } 
+
+
 
     public async addUser (data: UserData): Promise<void> {
         console.log(JSON.stringify(data));

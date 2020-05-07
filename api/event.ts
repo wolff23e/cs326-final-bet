@@ -33,6 +33,8 @@ const eventsData = [{
 export default class Event {
 
     private static DEFAULT_EVENT_LIMIT = 10;
+    private static DEFAULT_TAG_LIMIT = 10;
+
 
     public static async create(data: any, response: Response): Promise<void> {
 
@@ -156,23 +158,12 @@ export default class Event {
 
     public static async getTags(data: any, response: Response): Promise<void> {
 
-        const fakeTags = [
-            "UMass", 
-            "Holyoke",
-            "Ski and Board Club",
-            "Food",
-            "Movies",
-            "Bars",
-            "Hiking",
-            "Robotics",
-            "Math",
-            "Machine Learning",
-            "Bitcoin"
-        ];
-
-        const count = data.count ? Math.min(parseInt(data.count), fakeTags.length) : fakeTags.length;
-
-        response.write(JSON.stringify( { success: true, "tags": fakeTags.slice(0, count) } ))
+        let limit = data.limit;
+        if(!limit || isNaN(limit)){
+            limit = this.DEFAULT_TAG_LIMIT;
+        } 
+        const tags = await db.tagInterestDisplay(limit);
+        response.write(JSON.stringify( { success: true, tags } ))
         response.end();
     }
 
