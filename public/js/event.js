@@ -148,59 +148,43 @@ function createEventListItem(event){
   console.log("createEventListItem:" + event.id);
   return `
   <li id=${event.id} class="list-group-item tag-row font-weight-bold mt-2 text-left">
-      ${event.title}  
-      ${event.eventStartTime}  
-    <button onclick="onclickEditEventHelper(${event.id})" id="event-edit" class="btn btn-primary btn-dark mt-4">Edit</button>
-    <button onclick="deleteEvent(${event.id})" id="event-delete" class="btn btn-primary btn-dark mt-4">Delete</button>
+    <div>${event.title}</div>
+    <button onclick="onclickEditEventHelper('${event.id}')" id="event-edit" class="btn btn-primary btn-dark mt-4">Edit</button>
+    <button onclick="deleteEvent('${event.id}')" id="event-delete" class="btn btn-primary btn-dark mt-4">Delete</button>
 
 
   </li>
   `;
 }
-/// ${Unix_timestamp(event.postTimestamp)} was previously used display, might not use..
-function Unix_timestamp(t)
-{
-var dt = new Date(t*1000);
-var hr = dt.getHours();
-var m = "0" + dt.getMinutes();
-var s = "0" + dt.getSeconds();
-return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);
-}
 
-function deleteEvent(eventid){
+function deleteEvent(id){
   (async () => {
-
-  
 
     const jwt=window.localStorage.getItem("jwt");
     if(!jwt){
       console.log("Not logged in");
       return;
     }
-  //jwt  -> tokens cache is browser that user is logged in when making request
-    // create this data objects
-    const data = 
-    {
-      "id":eventid,
-      "jwt":  jwt// TODO: Get from localStorage 
-  };
+
+    const data = { jwt, id };
   
-  const response = await postData(getUrl('event/delete'), data);
-  const jsonResponse = await response.json(); 
+    const response = await postData(getUrl('event/delete'), data);
+    const jsonResponse = await response.json(); 
 
-  // for debugging
-  console.log(JSON.stringify(jsonResponse));
+    console.log(JSON.stringify(jsonResponse));
 
-  if (jsonResponse["success"] === true) {
-    console.log("successfully deleted");
-  } else {
+    if (jsonResponse["success"] === true) {
+      console.log("successfully deleted");
+      location.reload();
+    } else {
       const error = jsonResponse["error"]; // this is the error string;
       console.log(error);
-  }
+    }
 
   })();
 }
-window.deleteEvent=deleteEvent;
+
+window.deleteEvent = deleteEvent;
 
 function onclickEditEventHelper(eventid){
   console.log("onclickEditEventHelper:" + eventid);
