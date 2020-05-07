@@ -128,6 +128,21 @@ export default class Event {
         response.end();
     }
 
+
+    /*mongodb function inprogress
+    //public async getTaggedEvents (tag: string): Promise<EventData | null> {
+        const eventCollection = this.db!.collection(Collection.EVENTS); 
+        console.log(tag);
+
+        try {
+            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).toArray();
+            if (result) return result as EventData;
+        } catch (e) {
+            console.log(e);
+        }
+        return null;
+    } */
+
     public static async getTags(data: any, response: Response): Promise<void> {
 
         const fakeTags = [

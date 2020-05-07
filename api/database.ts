@@ -31,6 +31,7 @@ class Database {
         
     }
 
+
     public async addUser (data: UserData): Promise<void> {
         console.log(JSON.stringify(data));
         const userCollection = this.db!.collection(Collection.USERS);
@@ -74,7 +75,7 @@ class Database {
     }
 
     public async getEvent (id: string): Promise<EventData | null> {
-        const eventCollection = this.db!.collection(Collection.EVENTS);
+        const eventCollection = this.db!.collection(Collection.EVENTS); 
         console.log(id);
     
         try {
