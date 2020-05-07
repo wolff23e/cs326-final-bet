@@ -8,10 +8,9 @@ function eventCreate(){
       let description = $("#ae-desc").val();
       let date = $("#ae-date").val();
       let image = $("#ae-image").val();
-      let location=$("#ae-location").val();
-      console.log(date);
-      console.log(date.getTime());
-      if (!title || !description || !date || !image) {
+      let location = $("#ae-location").val();
+
+      if (!title || !description || !date || !location) {
         $("#ae-error").html("Please enter all fields");
         return;
       }
@@ -23,19 +22,16 @@ function eventCreate(){
         console.log("Not logged in");
         return;
       }
-    //jwt  -> tokens cache is browser that user is logged in when making request
-      // create this data objects
+
       const data = 
       {
+        jwt,
         title,
         description,
         image,
-        "location": location,
-        "eventStartTime": date, // Needs to be in-terms of unix time.
-        "author": "<from jwt token>", // TODO: Get from JWT from localStorage
-        "tags": tags,
-        
-        "jwt":  jwt// TODO: Get from localStorage 
+        location,
+        tags,
+        eventStartTime: date, // Needs to be in-terms of unix time.
     };
     
     const response = await postData(getUrl('event/create'), data);
@@ -55,60 +51,45 @@ function eventCreate(){
 }
 
 $("#event-submit").on("click", eventCreate);
+
 function eventPreview(){
   (async () => {
       let title = $("#ae-title").val();
       let description = $("#ae-desc").val();
       let date = $("#ae-date").val();
       let image = $("#ae-image").val();
-      let location=$("#ae-location").val();
-      
-      if (!title || !description || !date || !image) {
+      let location = $("#ae-location").val();
+
+      if (!title || !description || !date || !location) {
         $("#ae-error").html("Please enter all fields");
         return;
       }
 
-      
+      const eventprev = `
+        <div class="event">
+          <img class="event-img" src=${image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';">
+          <div class="event-title">
+            ${title}
+          </div>
+          <div class="event-desc mt-2">
+            ${description}
+          </div>
+          <div class="border-top border-dark mt-4"></div>
+            <div class="d-flex flex-row mt-1 justify-content-between">
+              <div class="event-time">
+                <b>Time:</b> ${date}
+              </div>
+            <div class="event-place">
+              <b>Location:</b> ${location}
+            </div>
+          </div>
+        </div>`;
 
-      const data = 
-      {
-        title,
-        description,
-        image,
-        "location": location,
-        "eventStartTime": date // Needs to be in-terms of unix time.
+      $(eventprev).appendTo("#eventpreviewbox");
 
-    };
-    const eventprev=`
-    
-  <div class="event">
-                    <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';">
-                    <div class="event-title">
-                      ${data.title}
-                  </div>
-                  <div class="event-desc mt-2">
-                   ${data.description}
-                </div>
-                    <div class="border-top border-dark mt-4"></div>
-                    <div class="d-flex flex-row mt-1 justify-content-between">
-                        <div class="event-time">
-                            <b>Time:</b> ${data.eventStartTime}
-                        </div>
-                        <div class="event-place">
-                            <b>Location:</b> ${data.location}
-                        </div>
-                    </div>
-                </div>
-                
-  `
-  $(eventprev).appendTo("#eventpreviewbox");
-
-    
-
-
-
-    })();
+  })();
 }
+
 $("#event-preview").on("click", eventPreview);
 
 function getEventbyId(eventid){
@@ -132,48 +113,47 @@ function getEventbyId(eventid){
 
     $("#ed-title").val(eventInfo.title);
     $("#ed-desc").val(eventInfo.description);
-    $("#ed-date").val(eventInfo.date);
+    $("#ed-date").val(eventInfo.eventStartTime);
     $("#ed-image").val(eventInfo.image);
     $("#ed-location").val(eventInfo.location);
     Array(5).fill().forEach((_, i) => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
-    })();
+  })();
 }
+
 window.getEventbyId=getEventbyId;
-  
 
 
 function editEvent(){
 
     (async () => {
 
-        const id=window.localStorage.getItem("eventid");
+        const id = window.localStorage.getItem("eventid");
         let title = $("#ed-title").val();
         let description = $("#ed-desc").val();
         let date = $("#ed-date").val();
-        let image = $("ed-image").val();
-        let location=$("#ae-location").val();
+        let image = $("#ed-image").val();
+        let location = $("#ed-location").val();
   
-        if (!title || !description || !date || !image) {
-          $("#ed-error").html("Please enter all fields");
+        if (!title || !description || !date || !location) {
+          $("#ed-error").html("editEvent: Please enter all fields");
           return;
         }
+
         const jwt=window.localStorage.getItem("jwt");
-        const tags = Array(5).fill().map(i => $("#ed-taged" + (i + 1)).val());
   
-      //jwt  -> tokens cache is browser that user is logged in when making request
-        // create this data object
+        const tags = Array(5).fill().map((_, i) => $("#ed-taged" + (i + 1)).val());
+  
         const data = 
         {
           id,
+          jwt,
           title,
           description,
           image,
-          "location":location,
+          location,
+          tags,
           "eventStartTime": date, // Needs to be in-terms of unix time.
-          "author": "<from jwt token>", // TODO: Get from JWT from localStorage
-          "tags": tags,
-          "jwt": jwt // TODO: Get from localStorage 
       };
       
       const response = await postData(getUrl('event/update'), data);
@@ -331,27 +311,24 @@ function showPopularEvents(eventnum){
 }
 function creatEventItem(data){
   return `
-  <div class="event">
-                    <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';"
-
-                    >
-                    <div class="event-title">
-                      ${data.title}
-                  </div>
-                  <div class="event-desc mt-2">
-                   ${data.description}
-                </div>
-                    <div class="border-top border-dark mt-4"></div>
-                    <div class="d-flex flex-row mt-1 justify-content-between">
-                        <div class="event-time">
-                            <b>Time:</b> ${data.eventStartTime}
-                        </div>
-                        <div class="event-place">
-                            <b>Location:</b> ${data.location}
-                        </div>
-                    </div>
-                </div>
-                
-  `
+    <div class="event">
+      <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';">
+      <div class="event-title">
+          ${data.title}
+      </div>
+      <div class="event-desc mt-2">
+        ${data.description}
+      </div>
+        <div class="border-top border-dark mt-4"></div>
+        <div class="d-flex flex-row mt-1 justify-content-between">
+          <div class="event-time">
+            <b>Time:</b> ${data.eventStartTime}
+          </div>
+          <div class="event-place">
+            <b>Location:</b> ${data.location}
+          </div>
+        </div>
+    </div>       
+  `;
 }
 window.showPopularEvents=showPopularEvents;

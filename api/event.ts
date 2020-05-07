@@ -77,7 +77,12 @@ export default class Event {
             return;
         }
 
+        data.author = response.locals.authUser;
+        data.postTimestamp = Math.floor(Date.now() / 1000);
+
+        console.log("update:" + JSON.stringify(data));
         const updated=await db.updateEvent(data);
+
         if(!updated){
             response.write(JSON.stringify( { success: false, error: "Event could not be updated"} ))
             response.end();

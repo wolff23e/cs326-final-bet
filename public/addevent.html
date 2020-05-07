@@ -15,38 +15,28 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
     <script type="module" src="js/main.js"></script>
 </head>
 
 <script> 
 $(document).ready(function() {
   $('#navbarFill').load("navbar.html");
+
+  var date_input=$('input[name="ae-date"]');
+  var container=$('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+  date_input.datepicker({
+      format: 'mm/dd/yyyy',
+      container: container,
+      todayHighlight: true,
+      autoclose: true,
+  })
 });
 </script>
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
 
-<!--Font Awesome (added because you use icons in your prepend/append)-->
-<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
-<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
-<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="ae-date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <body>
 
   <div id="navbarFill"></div>
@@ -66,59 +56,52 @@ $(document).ready(function() {
                   <form onsubmit="return false;">
 
                     <div class="form-group">
-                      <label for="description">Enter the title for your event</label>
-                      <input id="ae-title" class="form-control" rows="5"></input>
+                      <label for="description">Title *</label>
+                      <input id="ae-title" class="form-control" placeholder="Enter the title for your event" rows="5"></input>
                     </div>
  
                     <div class="form-group">
-                      <label for="description">Describe your event:</label>
-                      <textarea id="ae-desc" class="form-control" rows="5"></textarea>
+                      <label for="description">Describe *</label>
+                      <textarea id="ae-desc" class="form-control" placeholder="Describe your event" rows="5"></textarea>
                     </div>
+
                     <div class="md-form">
-                      <div class="form-group ">
-                        <label class="control-label requiredField" for="ae-date">
-                         Date
-                         <span class="asteriskField">
-                          *
-                         </span>
-                        </label>
-                        <div class="input-group">
-                         <div class="input-group-addon">
-                          <i class="fa fa-calendar">
-                          </i>
-                         </div>
-                         <input class="form-control" id="ae-date" name="ae-date" placeholder="MM/DD/YYYY" type="text"/>
-                        </div>
-                       </div>
- 
-                      <div class="mt-2">Image for the event</div>
-                      <input id="ae-image" class="form-control" rows="5"></input>
 
-                      <div class="mt-2">Event venue</div>
-                      <input id="ae-location" class="form-control" rows="5"></input>
+                      <label class="control-label requiredField" for="ae-date">Date *</label>
+                      <div class="input-group">
+                        <input class="form-control" id="ae-date" name="ae-date" placeholder="MM/DD/YYYY" type="text"/>
+                      </div>
 
-                      <div class="mt-2">Please enter upto 5 related tags</div>
+                      <div class="mt-2">Event venue *</div>
+                      <input id="ae-location" class="form-control" placeholder="Enter location" rows="5"></input>
+                       
+                      <div class="mt-2">Image URL (Optional)</div>
+                      <input id="ae-image" class="form-control" placeholder="Ex: https://cs326isawesome.com/emery.png" rows="5"></input>
+
+                      <div class="mt-2">Enter upto 5 related tags (Optional)</div>
 
                       <div class="ae-tag-group d-flex flex-row flex-wrap">
-                        <input id="ae-tag1" class="form-control ae-tag-input" rows="5" id="tag1"></input>
+                        <input id="ae-tag1" class="form-control tag-input" rows="5" id="tag1"></input>
 
-                        <input id="ae-tag2" class="form-control ae-tag-input" rows="5" id="tag2"></input>
+                        <input id="ae-tag2" class="form-control tag-input" rows="5" id="tag2"></input>
 
-                        <input id="ae-tag3" class="form-control ae-tag-input" rows="5" id="tag3"></input>
+                        <input id="ae-tag3" class="form-control tag-input" rows="5" id="tag3"></input>
 
-                        <input id="ae-tag4" class="form-control ae-tag-input" rows="5" id="tag4"></input>
+                        <input id="ae-tag4" class="form-control tag-input" rows="5" id="tag4"></input>
 
-                        <input id="ae-tag5" class="form-control ae-tag-input" rows="5" id="tag5"></input>
+                        <input id="ae-tag5" class="form-control tag-input" rows="5" id="tag5"></input>
                       </div>
                      
                     </div>
+
                     <button id="event-preview" class="btn btn-primary btn-dark mt-2">Preview</button>
                     <button id="event-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
-                    <p id="eventpreviewbox">
-                      
-                    </p id="eventpreviewbox">
+
                     <div id="ae-error" class="d-flex justify-content-center text-danger"></div>
                     <div id="ae-success" class="d-flex justify-content-center text-primary"></div>
+
+                    <p id="eventpreviewbox"> </p>
+                
                   </form>
                 </div>
 
