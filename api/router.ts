@@ -33,7 +33,7 @@ export default class Router {
       this.router.post('/event/tags', this.getTagsHandler.bind(this));
 
       this.router.post('/event/get', this.getEventByIDHandle.bind(this));
-      this.router.post('/event/gettags', this.getEventByTagHandler.bind(this));
+      this.router.post('/event/getbytags', this.getEventByTagHandler.bind(this));
 
       this.router.post('/event/mylist', [this.authHandler.bind(this), this.getUserPostedEventsHandler.bind(this)]);
       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
