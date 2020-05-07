@@ -146,17 +146,27 @@ window.editEvent=editEvent;
 $("#ed-submit").on("click", editEvent);
 function createEventListItem(event){
   console.log("createEventListItem:" + event.id);
-  return ` 
-  <li id=${event.id} class="list-group-item tag-row ">
+  return `
+  <li id=${event.id} class="list-group-item tag-row font-weight-bold mt-2 text-left">
       ${event.title}  
-
-    <button onclick="onclickEditEventHelper(${event.id})" id="event-edit" class="btn btn-primary btn-dark mt-2">Edit</button>
-    <button onclick="deleteEvent(${event.id})" id="event-delete" class="btn btn-primary btn-dark mt-2">delete</button>
+      ${event.eventStartTime}  
+    <button onclick="onclickEditEventHelper(${event.id})" id="event-edit" class="btn btn-primary btn-dark mt-4">Edit</button>
+    <button onclick="deleteEvent(${event.id})" id="event-delete" class="btn btn-primary btn-dark mt-4">Delete</button>
 
 
   </li>
   `;
 }
+/// ${Unix_timestamp(event.postTimestamp)} was previously used display, might not use..
+function Unix_timestamp(t)
+{
+var dt = new Date(t*1000);
+var hr = dt.getHours();
+var m = "0" + dt.getMinutes();
+var s = "0" + dt.getSeconds();
+return hr+ ':' + m.substr(-2) + ':' + s.substr(-2);
+}
+
 function deleteEvent(eventid){
   (async () => {
 

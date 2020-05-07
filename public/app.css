@@ -16,6 +16,7 @@ body {
 .filter-container {
     background-color: rgb(211, 164, 238);
     width: 80%;
+    overflow: visible;
 }
 
 
@@ -37,12 +38,15 @@ body {
 .events-column {
     background-color: purple;
     width: 100%;
+    overflow: visible;
 }
 
 .events-container {
     background-color: purple;
     width: 35em;
-    height: 100vh;
+    height: 100%;
+    overflow: visible;
+
 }
 
 .event {
@@ -60,7 +64,7 @@ body {
 .form-container {
     background-color: purple;
     width: 50em;
-    height: 100vh;
+    height: 100%;
 }
 .form {
     display: flex;
