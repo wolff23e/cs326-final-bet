@@ -58,6 +58,9 @@ $(document).ready(function() {
                       <div class="mt-2">Image for the event</div>
                       <input id="ae-image" class="form-control" rows="5"></input>
 
+                      <div class="mt-2">Event venue</div>
+                      <input id="ae-location" class="form-control" rows="5"></input>
+
                       <div class="mt-2">Please enter upto 5 related tags</div>
 
                       <div class="ae-tag-group d-flex flex-row flex-wrap">
@@ -73,7 +76,11 @@ $(document).ready(function() {
                       </div>
                      
                     </div>
+                    <button id="event-preview" class="btn btn-primary btn-dark mt-2">Preview</button>
                     <button id="event-submit" class="btn btn-primary btn-dark mt-2">Submit</button>
+                    <p id="eventpreviewbox">
+                      
+                    </p id="eventpreviewbox">
                     <div id="ae-error" class="d-flex justify-content-center text-danger"></div>
                     <div id="ae-success" class="d-flex justify-content-center text-primary"></div>
                   </form>
