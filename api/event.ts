@@ -117,6 +117,8 @@ export default class Event {
 
     public static async deleteEventByID(data: any, response: Response): Promise<void> {
         
+        console.log("deleteEventByID: " + JSON.stringify(data));
+
         if (!data.id) {
             response.write(JSON.stringify( { success: false } ));
             response.end();
