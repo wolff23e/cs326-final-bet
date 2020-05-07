@@ -60,7 +60,9 @@ User.ts: Javascript file used to call database functions to manipulate user info
 
 #### Emma: 
 
-- Front end: View all tags and events, Clubs and Orgs, unified overall layout
+- Front end: View all tags and events, Interests, unified overall layout, modify events
+- Backend: getEventsByTag, tagInterestDisplay, Atlas event edits, interests page
+
 
 #### Rahul: 
 
