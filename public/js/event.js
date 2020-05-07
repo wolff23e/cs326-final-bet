@@ -8,7 +8,9 @@ function eventCreate(){
       let description = $("#ae-desc").val();
       let date = $("#ae-date").val();
       let image = $("#ae-image").val();
-
+      let location=$("#ae-location").val();
+      console.log(date);
+      console.log(date.getTime());
       if (!title || !description || !date || !image) {
         $("#ae-error").html("Please enter all fields");
         return;
@@ -28,9 +30,11 @@ function eventCreate(){
         title,
         description,
         image,
+        "location": location,
         "eventStartTime": date, // Needs to be in-terms of unix time.
         "author": "<from jwt token>", // TODO: Get from JWT from localStorage
         "tags": tags,
+        
         "jwt":  jwt// TODO: Get from localStorage 
     };
     
@@ -51,7 +55,61 @@ function eventCreate(){
 }
 
 $("#event-submit").on("click", eventCreate);
+function eventPreview(){
+  (async () => {
+      let title = $("#ae-title").val();
+      let description = $("#ae-desc").val();
+      let date = $("#ae-date").val();
+      let image = $("#ae-image").val();
+      let location=$("#ae-location").val();
+      
+      if (!title || !description || !date || !image) {
+        $("#ae-error").html("Please enter all fields");
+        return;
+      }
 
+      
+
+      const data = 
+      {
+        title,
+        description,
+        image,
+        "location": location,
+        "eventStartTime": date // Needs to be in-terms of unix time.
+
+    };
+    const eventprev=`
+    
+  <div class="event">
+                    <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';">
+                    <div class="event-title">
+                      ${data.title}
+                  </div>
+                  <div class="event-desc mt-2">
+                   ${data.description}
+                </div>
+                    <div class="border-top border-dark mt-4"></div>
+                    <div class="d-flex flex-row mt-1 justify-content-between">
+                        <div class="event-time">
+                            <b>Time:</b> ${data.eventStartTime}
+                        </div>
+                        <div class="event-place">
+                            <b>Location:</b> ${data.location}
+                        </div>
+                    </div>
+                </div>
+                
+  `
+  $(eventprev).appendTo("#eventpreviewbox");
+
+    
+
+
+
+    })();
+}
+$("#event-preview").on("click", eventPreview);
 
 function getEventbyId(eventid){
   (async () => {
@@ -76,6 +134,7 @@ function getEventbyId(eventid){
     $("#ed-desc").val(eventInfo.description);
     $("#ed-date").val(eventInfo.date);
     $("#ed-image").val(eventInfo.image);
+    $("#ed-location").val(eventInfo.location);
     Array(5).fill().forEach((_, i) => $("#ed-tag" + (i + 1)).val(eventInfo.tags[i]));
   
     })();
@@ -93,6 +152,7 @@ function editEvent(){
         let description = $("#ed-desc").val();
         let date = $("#ed-date").val();
         let image = $("ed-image").val();
+        let location=$("#ae-location").val();
   
         if (!title || !description || !date || !image) {
           $("#ed-error").html("Please enter all fields");
@@ -109,6 +169,7 @@ function editEvent(){
           title,
           description,
           image,
+          "location":location,
           "eventStartTime": date, // Needs to be in-terms of unix time.
           "author": "<from jwt token>", // TODO: Get from JWT from localStorage
           "tags": tags,
@@ -271,20 +332,22 @@ function showPopularEvents(eventnum){
 function creatEventItem(data){
   return `
   <div class="event">
-                    <img class="event-img" src="${data.image}">
+                    <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';"
+
+                    >
                     <div class="event-title">
-                      "${data.title}"
+                      ${data.title}
                   </div>
                   <div class="event-desc mt-2">
-                   "${data.description}"
+                   ${data.description}
                 </div>
                     <div class="border-top border-dark mt-4"></div>
                     <div class="d-flex flex-row mt-1 justify-content-between">
                         <div class="event-time">
-                            <b>Time:</b> "${data.eventStartTime}"
+                            <b>Time:</b> ${data.eventStartTime}
                         </div>
                         <div class="event-place">
-                            <b>Location:</b> "${data.location}"
+                            <b>Location:</b> ${data.location}
                         </div>
                     </div>
                 </div>
