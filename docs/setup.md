@@ -10,4 +10,4 @@
 
 - First commit all your changes.
 - `git add heroku https://murmuring-woodland-32500.herokuapp.com/` to add heroku repo.
-- `git push origin master` to deploy to Heroku.
+- `git push heroku master` to deploy to Heroku.
