@@ -163,11 +163,12 @@ function editEvent(){
       
   
       if (jsonResponse["success"] === true) {
-          $("#ae-success").html("Event Successfully Updates!!");
+          $("#ed-success").html("Event Successfully Updates!!");
           window.localStorage.setItem("eventid","");
+          window.location.href = "myevent.html"
       } else {
           const error = jsonResponse["error"]; // this is the error string;
-          $("#ae-error").html(error);
+          $("#ed-error").html(error);
       }
       
       })();
