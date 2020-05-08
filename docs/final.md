@@ -8,6 +8,10 @@
 
 - Subtitle: 5College FOMO
 
+- The Website: https://murmuring-woodland-32500.herokuapp.com
+
+- YouTube Link: https://www.youtube.com/watch?v=8BlAbxv33Os
+
 - Semester: Spring 2020
 
 - Overview:  **Five College FOMO** created a website to instill community and access to opportunity across the five college consortium. We believed that many students attending Amherst, Mount Holyoke, Smith, Hampshire, and UMass Amherst are not able to fully benefit from the vast five college network of clubs, events, guest lectures, and so forth due to lack of centralized information.
@@ -19,59 +23,105 @@ OUR Solution? **Five College FOMO** We have information at your fingertips based
 # Team Members: Sathvik Birudavolu @BSathvik, Emma Wolff @wolff23e, Rahul Alluri @ralluri-sudo  
 
 # User Interface 
+
 - addevent.html: Allows user to add event to event database
+![alt text](final-img/create.png)
 
 - index.html: displays recent events, and allows users to search through all events
+    - When logged in:
+![alt text](final-img/index-logged-in.png)
 
-- myevent.html: Allows user to see all events they have posted, so they can edit/delete, or just view!
+    - When logged out:
+    ![alt text](final-img/index-logged-out.png)
 
-- registration.html: Allows users to create a account with 5CFOMO
+- myevent.html: Allows user to see all events they have posted, so they can edit/delete, or just view! ![alt text](final-img/myevents.png)
 
-- groups.html: Allows users to see "Interests" tags on events such as; UMass, Bars, Hiking, et cetera
+- registration.html: Allows users to create a account with 5CFOMO. ![alt text](final-img/register.png)
 
-- log in: Allows users to log into their accounts!
+- groups.html: Allows users to see "Interests" tags on events such as; UMass, Bars, Hiking, et cetera. ![alt text](final-img/groups.png)
+
+- log in: Allows users to log into their accounts! ![alt text](final-img/login.png)
 
 
 
 # APIs
-- <a href="https://documenter.getpostman.com/view/3593173/Szf52oX6?version=latest"> API Postman Documentation Link</a> 
+- Please use the Postman doc link to see the list of API endpoints with examples and descriptions:<a href="https://documenter.getpostman.com/view/3593173/Szf52oX6?version=latest"> API Postman Documentation Link</a> 
 
 
 # Database
 - Utilized MongoDB Atlas to host all events as json objects, Utilized MongoDB Atlas to host all users with accounts on 5College Fomo, as well as corresponding account data 
 
+- Out MongoDB database has two collections, one for users and one for events.
+
+### Example User Data
+
+```
+{
+    "_id":"sbirudavolu@umass.edu",
+    "email":"sbirudavolu@umass.edu",
+    "firstname":"Sathvik",
+    "lastname":"Birudavolu",
+    "school":"UMass Amherst",
+    "password":"$2b$05$CBjh258KexpYWFA3O12F6OhMeIdu7dtLgNur7XlOWxPNSrJ16BViS"
+}
+```
+
+### Example Event Data
+
+```
+{
+    "_id":"d40098b2dd921154ac210ece6712b11ac7f885a76025fa1dd9ac02f3d9e962fe",
+    "id":"d40098b2dd921154ac210ece6712b11ac7f885a76025fa1dd9ac02f3d9e962fe",
+    "title":"CRC Rick and Morty Viewing Party (Updated)",
+    "description":"Come watch Rick and Morty with CRC for our end of the year online gather",
+    "image":"https://thetecheducation.com/wp-content/uploads/2020/04/rick-morty-feat-1000x600.jpg",
+    "location":"ZOOM: 3253495734857",
+    "tags":["lmao","","","",""],
+    "eventStartTime":"05/28/2020",
+    "author":"sbirudavolu@umass.edu",
+    "postTimestamp":1588913758
+}
+```
+
 
 # URL Routes/Mappings
-- A final up-to-date table of all the URL routes that your application supports and a short description of what those routes are used for. You should also indicate any authentication and permissions on those routes.
 
-- to serve static pages : this.server.use('/', express.static('./public')); 
+Please refer to the postman docs the <a href="https://documenter.getpostman.com/view/3593173/Szf52oX6?version=latest"> postman docs</a> for descriptions as well as examples.
 
-- Parse requests as JSON :  this.server.use(express.json()
+-  `/` : servers all the static pages/files.
 
-- endpoint for API : this.server.use('/api', this.router);
+- `/api`: endpoint for API
 
-- user registration :       this.router.post('/user/register', this.registerHandler.bind(this));
+- `api/user/register`: User registration
 
-- user log-in :       this.router.post('/user/login', this.loginHandler.bind(this));
+- `api/user/login`: User login (return JWT Token)
 
-- recent events posted :       this.router.post('/event/recent', this.getRecentEventsHandler.bind(this));
+- `api/user/login`: User login (return JWT Token)
 
-- view tags :       this.router.post('/event/tags', this.getTagsHandler.bind(this));
+- `api/event/recent`: gets the recently posted events.
 
-- view interests by tags :       this.router.post('/event/getbytags', this.getEventByTagHandler.bind(this));
+- `api/event/tags`:  gets a list of tags.
 
-- view specific user posted events  (user authenticatoin as well) :       this.router.post('/event/mylist', [this.authHandler.bind(this), this.getUserPostedEventsHandler.bind(this)]);
+- `api/event/getbytags`: gets a list of events given a tag.
 
-- user create new event  (user authenticatoin as well) :       this.router.post('/event/create', [this.authHandler.bind(this), this.createEventHandler.bind(this)]);
+- `api/event/mylist`: gets specific user posted events.(requires JWT Token)
 
-- user update event (user authenticatoin as well) :       this.router.post('/event/update', [this.authHandler.bind(this), this.updateEventHandler.bind(this)]);
+- `api/event/create`: creates a new event (requires JWT Token)
 
-- user delete event  (user authenticatoin as well) :   this.router.post('/event/delete', [this.authHandler.bind(this), this.deleteEventByIDHandle.bind(this)]);
+- `api/event/update`: updates existing event (requires JWT Token)
+
+- `api/event/delete`: deletes existing event (requires JWT Token)
 
 
 
 # Authentication/Authorization
 - Users are authenticated by creating an account which is stored in our Atlas MongoDB database. All users carry the same permissions, which are greater than non-users. Non-users may view Main events page as well as Interests (groups.html & index.html), but cannot do what users can, which is: post events, edit events, and delete events. Once User is signed in our navbar rids them of register/log in, and gives them option to log off.
+
+- Passwords are salted and hashed using bycrpt before being stored in MongoDB.
+- We use JWT Tokens for authentication provided by [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) npm package.
+- The JWT token is generated when the user logs in using a secret key stored in `secret.json` on the master branch and which is stored as a Heroku Env Variable in `final-release` branch which is pushed to heroku.
+- This JWT Token is stored in `localStorage` in the browser and is used for requests that require specific user authentication (ex: update, delete) listed below. That means users will only able to edit or delete events they've created.
+- The token is deleted when the user logs out.
 
 
 # Division of Labor
