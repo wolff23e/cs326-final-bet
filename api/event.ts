@@ -13,26 +13,6 @@ export interface EventData {
     postTimestamp: number
 }
 
-const eventsData = [{
-    id: 76876423,
-    title: "Come hike with us at the UMass Hiking Club",
-    description: "Please come sign up at the campus center this Wednesday at 4pm!!",
-    eventStartTime: 1587093646,
-    location: "Haigis Mall",
-    image: "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2019-8/couple-hiking-mountain-climbing-1296x728-header.jpg?w=1155",
-    author: "Sathvik Birudavolu", // name
-    postTimestamp: 1584000000,
-},{
-    id: 12887234,
-    title: "Come ski with us at the UMass Ski and Baord Club!",
-    description: "Please come sign up at the campus center this Friday at 10pm!!",
-    location: "Wherever people skii",
-    eventStartTime: 1589000000,
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/84/Ski_Famille_-_Family_Ski_Holidays.jpg",
-    author: "Emma Wolff", // name
-    postTimestamp: 1582000000,
-}];
-
 export default class Event {
 
     private static DEFAULT_EVENT_LIMIT = 10;
@@ -157,7 +137,7 @@ export default class Event {
         response.end();
         return;
       }
-        const events=await db.getTaggedEvents(data.tag);
+        const events=await db.getTaggedEvents(data.tag, this.DEFAULT_TAG_LIMIT);
         console.log(events);
         response.write(JSON.stringify( { success: true, data: events } ))
         response.end();

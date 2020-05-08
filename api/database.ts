@@ -30,12 +30,12 @@ class Database {
         
     }
     
-    public async getTaggedEvents (tag: string): Promise<EventData[] > {
+    public async getTaggedEvents (tag: string, limit: number): Promise<EventData[] > {
         const eventCollection = this.db!.collection(Collection.EVENTS); 
         console.log(tag);
 
         try {
-            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).toArray();
+            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).limit(limit).toArray();
 
             if (result) return result as EventData[];
         } catch (e) {

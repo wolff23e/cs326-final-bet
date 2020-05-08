@@ -20,7 +20,15 @@
 <script> 
   $(document).ready(function() {
     $('#navbarFill').load("navbar.html");
-    showPopularEvents(2);
+
+    const tags = window.location.href.split('#');
+    if (tags.length > 1) {
+        const tag = tags[1];
+        showEvents(2, tag);
+    } else {
+        showEvents(2);
+    }
+
   });
 
   

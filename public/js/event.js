@@ -251,11 +251,17 @@ function showmyevents(){
 window.showmyevents=showmyevents;
 
 
+function tagOnClick(tag) {
+  console.log("tag clicked: " + tag);
+  window.localStorage.setItem("tag", tag);
+}
+
+window.tagOnClick = tagOnClick;
 
 function createTagListItem(tagName) {
   return ` 
   <li class="list-group-item tag-row ">
-    <a href="#">
+    <a href="index.html#${tagName}">
       ${tagName}  
     </a>
   </li>
@@ -287,13 +293,17 @@ function getTags(tagsLimit){
 
 window.getTags = getTags;
 
-function showPopularEvents(eventnum){
+function showEvents(limit, tag = ""){
   (async () => {
     console.log("show popular events called");
-    const data = window.localStorage.getItem("jwt");
-    console.log(data);
-    const num=eventnum;
-    const resp = await postData(getUrl("event/recent"),{limit: eventnum});
+
+    let resp = null;
+    if (!tag) {
+      resp = await postData(getUrl("event/recent"), { limit } );
+    } else {
+      resp = await postData(getUrl("event/getbytags"), { tag, limit } );
+    }
+
     const jsonResponse = await resp.json();
     console.log(JSON.stringify(jsonResponse.data));
   
@@ -351,15 +361,12 @@ function createEventTags(tags,count){
   tags.forEach(tag => {
     if(tag){
    
-    
     const hash='#'+tag;
     const tagid='#'+count;
-    console.log(count);
-    console.log(tagid);
 
     $(`<li class="tag list-inline-item">${hash}</li>s`).appendTo(tagid);
     
     }
   });
 }
-window.showPopularEvents=showPopularEvents;
+window.showEvents = showEvents;
