@@ -6,9 +6,13 @@
 - `npm install` to build
 - `npm start` to run the project
 
-### Config needed for heroku.
+### Configuration
 
-The following config is needed on branch `final-release`
+The master branch needs `secret.json` placed in the root directory of the project. It is avaiable on our group slack `#bet`. Note that the master branch cannot be pushed to heroku because of `secret.json`.
+
+In-order to configure for heroku deployment do the following in branch `final-release`.
+
+The following config is needed for branch `final-release`
 
 - `heroku config:set MONGO_ULR=<mongo db url>`
 - `heroku config:set MONGO_DB=<mongo db name>`
