@@ -35,7 +35,8 @@ class Database {
         console.log(tag);
 
         try {
-            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).limit(limit).toArray();
+            const result = await eventCollection.find({tags: { $elemMatch: { $eq: tag } }}).toArray();
+            console.log("getTaggedEvents: " + result);
 
             if (result) return result as EventData[];
         } catch (e) {
@@ -46,13 +47,13 @@ class Database {
     //will be for tag pulling
     public async tagInterestDisplay (limit: number): Promise<string[] > {
         const eventArray = await this.getRecentEvents(limit);
-        const tagArrayReturn = [];
+
+        const tagArrayReturn: string[] = [];
         //make loop function for tags
         for(var i = 0; i < eventArray.length; i++) {
-            var obj = eventArray[i];
-            if(obj.tags[i] != null){
-                tagArrayReturn.push(...obj.tags);
-            }
+            eventArray[i].tags.forEach(tag => {
+                if (tag) tagArrayReturn.push(tag);
+            })
         }
         var uniqueItems = Array.from(new Set(tagArrayReturn));
         uniqueItems = uniqueItems.filter(item => item);

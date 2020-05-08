@@ -127,7 +127,6 @@ window.getEventbyId=getEventbyId;
 function editEvent(){
 
     (async () => {
-
         const id = window.localStorage.getItem("eventid");
         let title = $("#ed-title").val();
         let description = $("#ed-desc").val();
@@ -142,7 +141,7 @@ function editEvent(){
 
         const jwt=window.localStorage.getItem("jwt");
   
-        const tags = Array(5).fill().map((_, i) => $("#ed-taged" + (i + 1)).val());
+        const tags = Array(5).fill().map((_, i) => $("#ed-tag" + (i + 1)).val());
   
         const data = 
         {
@@ -295,12 +294,13 @@ window.getTags = getTags;
 
 function showEvents(limit, tag = ""){
   (async () => {
-    console.log("show popular events called");
 
     let resp = null;
     if (!tag) {
+      console.log("showEvents recent");
       resp = await postData(getUrl("event/recent"), { limit } );
     } else {
+      console.log("showEvents tag:" + tag);
       resp = await postData(getUrl("event/getbytags"), { tag, limit } );
     }
 
@@ -333,7 +333,7 @@ function creatEventItem(data,count){
       <div class="event-desc mt-2">
         ${data.description}
       </div>
-      <span id="event-tags"></span>
+      <span id="event-tags${count}"></span>
         <div class="border-top border-dark mt-4"></div>
         <div class="d-flex flex-row mt-1 justify-content-between">
           <div class="event-time">
@@ -342,10 +342,6 @@ function creatEventItem(data,count){
           <div class="event-place">
             <b>Location:</b> ${data.location}
           </div>
-          
-
-
-          
         </div>
         <div class="border-top border-dark mt-4"></div>
         <div class="event-place">
@@ -357,14 +353,16 @@ function creatEventItem(data,count){
 }
 
 function createEventTags(tags,count){
+
   tags.forEach(tag => {
     if(tag){
    
     const hash='#'+tag;
+    const appendTo ='#event-tags' + count
 
     $(`
       <a href="#" class="mr-1" onclick="window.location.href = 'index.html#${tag}'; location.reload();">${hash}</a>
-    `).appendTo("#event-tags");
+    `).appendTo(appendTo);
     
     }
   });

@@ -137,7 +137,7 @@ export default class Event {
         response.end();
         return;
       }
-        const events=await db.getTaggedEvents(data.tag, this.DEFAULT_TAG_LIMIT);
+        const events = await db.getTaggedEvents(data.tag, this.DEFAULT_TAG_LIMIT);
         console.log(events);
         response.write(JSON.stringify( { success: true, data: events } ))
         response.end();
