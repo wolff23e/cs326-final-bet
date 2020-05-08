@@ -1,10 +1,8 @@
 import { MongoClient, Db } from 'mongodb';
 import { mongo as mongoCred } from "../secret.json";
 import { UserData } from './user';
-import Event, { EventData } from './event';
+import { EventData } from './event';
 import * as crypto from 'crypto';
-import { json } from 'express';
-import { eventNames } from 'cluster';
 
 export enum Collection {
     USERS = "users",
