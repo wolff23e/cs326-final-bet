@@ -1,5 +1,4 @@
 import { MongoClient, Db } from 'mongodb';
-import { mongo as mongoCred } from "../secret.json";
 import { UserData } from './user';
 import { EventData } from './event';
 import * as crypto from 'crypto';
@@ -15,12 +14,12 @@ class Database {
     private db: Db | null = null;  
 
     constructor() {
-        let client = new MongoClient(mongoCred.url, { useNewUrlParser: true });
+        let client = new MongoClient(process.env.MONGO_URL || 'please set MONGO_URL', { useNewUrlParser: true });
 
         (async () => {
             try {
                 client = await client.connect();
-                this.db = client.db(mongoCred.db);
+                this.db = client.db(process.env.MONGO_DB || 'please set MONGO_DB');
                 console.log("Successfully connected to MongoDB");
             } catch (err) {
                 console.log(err);

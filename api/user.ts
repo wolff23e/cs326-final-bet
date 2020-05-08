@@ -3,7 +3,7 @@ import { db } from './database';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
-import { jwtSecret } from "../secret.json";
+const jwtSecret = process.env.JWT_SECRET || '<secret>';
 
 export interface UserData {
     email: string,
