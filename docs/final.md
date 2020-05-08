@@ -14,8 +14,6 @@
 
 - Semester: Spring 2020
 
-- YouTube Link: https://www.youtube.com/watch?v=8BlAbxv33Os
-
 - Overview:  **Five College FOMO** created a website to instill community and access to opportunity across the five college consortium. We believed that many students attending Amherst, Mount Holyoke, Smith, Hampshire, and UMass Amherst are not able to fully benefit from the vast five college network of clubs, events, guest lectures, and so forth due to lack of centralized information.
 
 Although the Five Colleges do have a website, the utility is lacking. For example, instead of listing all orgs based off interests it simply redirects you to each individual college's listing thus making Googling more efficent than their site.
