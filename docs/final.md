@@ -81,7 +81,7 @@ OUR Solution? **Five College FOMO** We have information at your fingertips based
 
 - Emma Wolff, @wolff23e, Backend & Frontend: Drew wireframe, initial CSS/html implementation, markdown1.md, View all tags and events, Interests page will load tags, unified overall layout, modify events, getEventsByTag, tagInterestDisplay, Atlas event edits, final UI, finalmd
 
-- Rahul Alluri. @ralluri-sudo, Backend & Frontend: Made clubs & orgs page, made create events, made log-in, API point client side for login(public/js/user.js). Minor CSS and HTML editing, milestone2, GeteventbyID, updateEvent, getUserevents, Edit events, Update events, show event list
+- Rahul Alluri. @ralluri-sudo, Backend & Frontend: Made clubs & orgs page, made create events, made log-in, API point client side for login(public/js/user.js),milestone2, GeteventbyID,created: updateEvent, getUserevents, Edit events, Update events page, show event list for time line, preview, create event, milestone3.md.
 
 
 # Conclusion
