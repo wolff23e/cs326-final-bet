@@ -19,6 +19,15 @@ body {
     overflow: visible;
 }
 
+.tag{
+    color:rgb(30, 98, 223);
+}
+
+.list-inline{
+    margin-bottom:0;
+    padding-bottom:0;
+}
+
 
 .container-fluid {
     background-color: rgb(214, 214, 214);

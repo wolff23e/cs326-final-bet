@@ -301,15 +301,19 @@ function showPopularEvents(eventnum){
         // TODO: show error somehow.
       return;
       } else {
+      var count=0;
       jsonResponse.data.forEach(event=>{
-        $(creatEventItem(event)).appendTo("#events");
+        $(creatEventItem(event,count)).appendTo("#events");
+        console.log(event.tags);
+        createEventTags(event.tags,count);
+        count=count+1;
       })
       }
   
     })();
     
 }
-function creatEventItem(data){
+function creatEventItem(data,count){
   return `
     <div class="event">
       <img class="event-img" src=${data.image} onerror="if (this.src != 'img/default-image.jpg') this.src = 'img/default-image.jpg';">
@@ -319,6 +323,8 @@ function creatEventItem(data){
       <div class="event-desc mt-2">
         ${data.description}
       </div>
+      <ul class="list-inline" id='${count}'>
+      </ul>
         <div class="border-top border-dark mt-4"></div>
         <div class="d-flex flex-row mt-1 justify-content-between">
           <div class="event-time">
@@ -327,8 +333,33 @@ function creatEventItem(data){
           <div class="event-place">
             <b>Location:</b> ${data.location}
           </div>
+          
+
+
+          
         </div>
+        <div class="border-top border-dark mt-4"></div>
+        <div class="event-place">
+            <b>Organiser:</b> ${data.author}
+        </div>
+
     </div>       
   `;
+}
+
+function createEventTags(tags,count){
+  tags.forEach(tag => {
+    if(tag){
+   
+    
+    const hash='#'+tag;
+    const tagid='#'+count;
+    console.log(count);
+    console.log(tagid);
+
+    $(`<li class="tag list-inline-item">${hash}</li>s`).appendTo(tagid);
+    
+    }
+  });
 }
 window.showPopularEvents=showPopularEvents;
