@@ -14,6 +14,8 @@
 
 - Semester: Spring 2020
 
+- YouTube Link: https://www.youtube.com/watch?v=8BlAbxv33Os
+
 - Overview:  **Five College FOMO** created a website to instill community and access to opportunity across the five college consortium. We believed that many students attending Amherst, Mount Holyoke, Smith, Hampshire, and UMass Amherst are not able to fully benefit from the vast five college network of clubs, events, guest lectures, and so forth due to lack of centralized information.
 
 Although the Five Colleges do have a website, the utility is lacking. For example, instead of listing all orgs based off interests it simply redirects you to each individual college's listing thus making Googling more efficent than their site.
@@ -129,7 +131,7 @@ Please refer to the postman docs the <a href="https://documenter.getpostman.com/
 
 - Emma Wolff, @wolff23e, Backend & Frontend: Drew wireframe, initial CSS/html implementation, markdown1.md, View all tags and events, Interests page will load tags, unified overall layout, modify events, getEventsByTag, tagInterestDisplay, Atlas event edits, final UI, finalmd
 
-- Rahul Alluri. @ralluri-sudo, Backend & Frontend: Made clubs & orgs page, made create events, made log-in, API point client side for login(public/js/user.js). Minor CSS and HTML editing, milestone2, GeteventbyID, updateEvent, getUserevents, Edit events, Update events, show event list
+- Rahul Alluri. @ralluri-sudo, Backend & Frontend: Made clubs & orgs page, made create events, made log-in, API point client side for login(public/js/user.js),milestone2,created: GeteventbyID, updateEvent, getUserevents (backend events.ts), Edit events, Update events page, show event list for time line, preview, create event, milestone3.md.
 
 
 # Conclusion
