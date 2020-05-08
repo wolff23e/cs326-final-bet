@@ -333,8 +333,7 @@ function creatEventItem(data,count){
       <div class="event-desc mt-2">
         ${data.description}
       </div>
-      <ul class="list-inline" id='${count}'>
-      </ul>
+      <span id="event-tags"></span>
         <div class="border-top border-dark mt-4"></div>
         <div class="d-flex flex-row mt-1 justify-content-between">
           <div class="event-time">
@@ -362,9 +361,10 @@ function createEventTags(tags,count){
     if(tag){
    
     const hash='#'+tag;
-    const tagid='#'+count;
 
-    $(`<li class="tag list-inline-item">${hash}</li>s`).appendTo(tagid);
+    $(`
+      <a href="#" class="mr-1" onclick="window.location.href = 'index.html#${tag}'; location.reload();">${hash}</a>
+    `).appendTo("#event-tags");
     
     }
   });
